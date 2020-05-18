@@ -16,6 +16,7 @@ const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const eventRouter = require('./routes/event');
 const hbs = require('hbs');
+const hbsJson = require('hbs-json');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 hbs.registerPartials(join(__dirname, '/views/partials'));
+hbs.registerHelper('json', hbsJson);
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(

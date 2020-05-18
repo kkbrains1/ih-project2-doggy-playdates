@@ -11,13 +11,8 @@ eventRouter.get('/create', (req, res, next) => {
 
 eventRouter.post('/create', (req, res, next) => {
   //console.log(req.body);
-  const title = req.body.title;
-  const description = req.body.description;
-  const date = req.body.date;
-  const endDate = req.body.endDate;
-  const latitude = req.body.latitude;
-  const longitude = req.body.longitude;
-  //const creator = req.user._id
+  const { title, description, date, endDate, latitude, longitude } = req.body;
+  const creator = req.user._id;
   Event.create({
     title,
     description,
@@ -25,8 +20,8 @@ eventRouter.post('/create', (req, res, next) => {
     endDate,
     location: {
       coordinates: [longitude, latitude]
-    }
-    //creator
+    },
+    creator
   })
     .then((event) => {
       const eventId = event._id;
@@ -40,7 +35,7 @@ eventRouter.post('/create', (req, res, next) => {
 eventRouter.get('/list', (req, res, next) => {
   Event.find()
     .then(events => {
-      console.log(events)
+      //console.log(events)
       res.render('event/list', {events});
     })
     .catch(error => {
@@ -51,6 +46,7 @@ eventRouter.get('/list', (req, res, next) => {
 eventRouter.get('/:eventId', (req, res, next) => {
   const eventId = req.params.eventId;
   Event.findById(eventId)
+    .populate('event creator')
     .then(event => {
       console.log(event);
       res.render('event/single', {event});
