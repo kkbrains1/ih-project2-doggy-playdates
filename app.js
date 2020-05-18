@@ -15,6 +15,7 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const eventRouter = require('./routes/event');
+const userRouter = require('./routes/user');
 const hbs = require('hbs');
 const hbsJson = require('hbs-json');
 
@@ -63,6 +64,7 @@ app.use(bindUserToViewLocals);
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/event', eventRouter);
+app.use('/user', userRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
