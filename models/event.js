@@ -2,48 +2,53 @@
 
 const mongoose = require('mongoose');
 
-const eventSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: {
+const eventSchema = new mongoose.Schema(
+  {
+    title: {
       type: String,
-      default: 'Point'
+      required: true
     },
-    coordinates: [
-      {
-        type: Number,
-        min: -180,
-        max: 180
-      }
-    ]
+    description: {
+      type: String,
+      required: true
+    },
+    location: {
+      type: {
+        type: String,
+        default: 'Point'
+      },
+      coordinates: [
+        {
+          type: Number,
+          min: -180,
+          max: 180
+        }
+      ]
+    },
+    date: {
+      type: Date,
+      required: true
+    },
+    endDate: {
+      type: Date,
+      required: true
+    },
+    photo: {
+      type: String
+    },
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      //required: true,
+      ref: 'User'
+    }
   },
-  date: {
-    type: Date,
-    required: true
-  },
-  endDate: {
-    type: Date,
-    required: true
-  },
-  creator: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'User'
+  {
+    timestamps: {
+      createdAt: 'createdDate',
+      updatedAt: 'updatedDate'
+    }
   }
-},
-{
-  timestamps: {
-    createdAt: 'createdDate',
-    updatedAt: 'updatedDate'
-  }
-});
+);
 
 eventSchema.index({ location: '2dsphere' });
 
