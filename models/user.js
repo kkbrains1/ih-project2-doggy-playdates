@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
-    trim: true
+    trim: true,
+    unique: true
   },
   passwordHash: {
     type: String
@@ -20,7 +21,9 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   dogBreed: {
-    type: String
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Breed'
   },
   dogPersonality: {
     type: String
