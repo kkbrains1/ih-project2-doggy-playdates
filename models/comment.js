@@ -12,10 +12,19 @@ const commentSchema = new mongoose.Schema({
     required: true,
     ref: 'User'
   },
-  createdAt: {
-    type: Date
+  event: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Event'
   }
-});
+},
+{
+  timestamps: {
+    createdAt: 'createdDate',
+    updatedAt: 'updatedDate'
+  }
+}
+);
 
 const Comment = mongoose.model('Comment', commentSchema);
 

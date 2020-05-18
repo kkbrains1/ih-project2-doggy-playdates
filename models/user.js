@@ -30,11 +30,15 @@ const userSchema = new mongoose.Schema({
   },
   dogPhoto: {
     type: String
-  },
+  }
+}, 
+{
   timestamps: {
-    createdAt: 'createdDate'
-  } 
-});
+    createdAt: 'createdDate',
+    updatedAt: 'updatedDate'
+  }
+}
+);
 
 const User = mongoose.model('User', userSchema);
 

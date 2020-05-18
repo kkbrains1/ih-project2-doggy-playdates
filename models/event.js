@@ -36,12 +36,12 @@ const eventSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User'
-  },
-  createdAt: {
-    type: Date
-  },
-  updatedAt: {
-    type: Date
+  }
+},
+{
+  timestamps: {
+    createdAt: 'createdDate',
+    updatedAt: 'updatedDate'
   }
 });
 
