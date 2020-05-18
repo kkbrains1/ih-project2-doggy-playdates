@@ -13,8 +13,8 @@ const commentSchema = new mongoose.Schema({
     ref: 'User'
   },
   createdAt: {
-    type: Date,
-  },
+    type: Date
+  }
 });
 
 const Comment = mongoose.model('Comment', commentSchema);

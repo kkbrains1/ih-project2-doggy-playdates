@@ -5,32 +5,32 @@ const mongoose = require('mongoose');
 const eventSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    required: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   location: {
     type: {
       type: String,
-      default: 'Point',
+      default: 'Point'
     },
     coordinates: [
       {
         type: Number,
         min: -180,
-        max: 180,
-      },
-    ],
+        max: 180
+      }
+    ]
   },
   date: {
     type: Date,
-    required: true,
+    required: true
   },
   endDate: {
     type: Date,
-    required: true,
+    required: true
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
@@ -42,7 +42,7 @@ const eventSchema = new mongoose.Schema({
   },
   updatedAt: {
     type: Date
-  },
+  }
 });
 
 eventSchema.index({ location: '2dsphere' });

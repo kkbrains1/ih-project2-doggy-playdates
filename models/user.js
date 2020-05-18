@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   timestamps: {
-    createdAt: 'createdDate',
+    createdAt: 'createdDate'
   } 
 });
 
