@@ -5,6 +5,7 @@ const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const Breed = require('./../models/breed');
+const Dog = require('./../models/dog');
 
 const router = new Router();
 
@@ -26,7 +27,7 @@ router.get('/sign-up', (req, res, next) => {
 
 router.post('/sign-up', (req, res, next) => {
   const { name, email, dogName, dogBreed, password } = req.body;
-  console.log(dogBreed);
+  const user = {name, email, dogs: []};
   User.find({ email })
     .then((users) => {
       if (users && users.length ) {
@@ -35,20 +36,23 @@ router.post('/sign-up', (req, res, next) => {
       return;
     })
     .then(() => {
+      return Dog.create({name: dogName, breed: dogBreed });
+    })
+    .then((dog) => {
+      user.dogs.push(dog._id);
+    })
+    .then(() => {
       return bcryptjs.hash(password, 10);
     })
 
     .then((hash) => {
       return User.create({
-        name,
-        email,
-        dogName,
-        dogBreed,
+        ...user,
         passwordHash: hash
       });
     })
-    .then((user) => {
-      req.session.user = user._id;
+    .then((document) => {
+      req.session.user = document._id;
       res.redirect('/private');
     })
     .catch((error) => {
