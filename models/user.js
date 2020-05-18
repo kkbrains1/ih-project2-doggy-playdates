@@ -20,7 +20,9 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   dogBreed: {
-    type: String
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Breed'
   },
   dogPersonality: {
     type: String

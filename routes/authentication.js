@@ -4,21 +4,37 @@ const { Router } = require('express');
 
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
+const Breed = require('./../models/breed');
 
 const router = new Router();
 
 router.get('/sign-up', (req, res, next) => {
-  res.render('sign-up');
+  Breed.find()
+  .then(breeds => {
+    const teste = breeds.map(b => {
+      console.log('ola: ', b);
+      return {_id: 'teste', breed:b.breed};
+    });
+    console.log(teste);
+    console.log(breeds);
+    res.render('sign-up', {breeds: breeds});
+  })
+  .catch(error => {
+    next(error);
+  });
 });
 
 router.post('/sign-up', (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, dogName, dogBreed, password } = req.body;
+  console.log(dogBreed);
   bcryptjs
     .hash(password, 10)
     .then(hash => {
       return User.create({
         name,
         email,
+        dogName,
+        dogBreed,
         passwordHash: hash
       });
     })
