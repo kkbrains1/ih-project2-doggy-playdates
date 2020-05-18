@@ -4,10 +4,12 @@
 {{> eventitem }}
 {{/with}}
 
+<div id="map-container" ></div>
+
 <script>
   function initMap() {
     const event = {{{json event}}};
-    console.log(event.location.coordinates); 
+    //console.log(event.location.coordinates); 
     const $mapContainer = document.getElementById('map-container');
 
     const map = new window.google.maps.Map($mapContainer, {
@@ -23,9 +25,7 @@
       }
     });
 
-    console.log(marker);
-
-
+    //console.log(marker);
   }
 
 </script>

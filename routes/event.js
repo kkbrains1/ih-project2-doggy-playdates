@@ -34,11 +34,12 @@ eventRouter.post('/create', (req, res, next) => {
 
 eventRouter.get('/list', (req, res, next) => {
   Event.find()
-    .then(events => {
+    .populate('event creator')
+    .then((events) => {
       //console.log(events)
-      res.render('event/list', {events});
+      res.render('event/list', { events });
     })
-    .catch(error => {
+    .catch((error) => {
       next(error);
     });
 });
@@ -47,11 +48,11 @@ eventRouter.get('/:eventId', (req, res, next) => {
   const eventId = req.params.eventId;
   Event.findById(eventId)
     .populate('event creator')
-    .then(event => {
+    .then((event) => {
       console.log(event);
-      res.render('event/single', {event});
+      res.render('event/single', { event });
     })
-    .catch(error => {
+    .catch((error) => {
       next(error);
     });
 });

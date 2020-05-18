@@ -1,5 +1,44 @@
+<div id="map-container" ></div>
+
 <ul>
   {{#each events}}
     {{> eventitem}}
   {{/each}}
 </ul>
+
+
+<script>
+  function initMap() {
+    const events = {{{json events}}};
+        
+    const $mapContainer = document.getElementById('map-container');
+
+    const map = new window.google.maps.Map($mapContainer, {
+      center: {lat: 38.74, lng: -9.14 },
+      zoom: 10
+    });
+
+    const markers = [];
+
+    for (let event of events) {
+      const marker = new window.google.maps.Marker({
+        map,
+        position: {
+          lat: event.location.coordinates[1],
+          lng: event.location.coordinates[0]
+        }
+      });
+
+      markers.push(marker);
+
+      marker.addListener('click', () => {
+        const endpoint = `${event._id}`;
+        window.location = endpoint;
+      })
+
+    }
+  }
+
+</script>
+
+{{> mapscript}}
