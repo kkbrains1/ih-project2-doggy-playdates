@@ -13,11 +13,11 @@ router.get('/sign-up', (req, res, next) => {
   Breed.find()
     .then((breeds) => {
       const teste = breeds.map((b) => {
-        console.log('ola: ', b);
+        //console.log('ola: ', b);
         return { _id: 'teste', breed: b.breed };
       });
-      console.log(teste);
-      console.log(breeds);
+      //console.log(teste);
+      //console.log(breeds);
       res.render('sign-up', { breeds: breeds });
     })
     .catch((error) => {

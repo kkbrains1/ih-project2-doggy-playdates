@@ -1,7 +1,5 @@
 'use strict';
 
-//testing github
-
 const { join } = require('path');
 const express = require('express');
 const createError = require('http-errors');
@@ -16,11 +14,17 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const eventRouter = require('./routes/event');
+const hbs = require('hbs');
+const hbsJson = require('hbs-json');
 
 const app = express();
 
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+hbs.registerPartials(join(__dirname, '/views/partials'));
+hbs.registerHelper('json', hbsJson);
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(
@@ -58,6 +62,7 @@ app.use(bindUserToViewLocals);
 
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/event', eventRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
