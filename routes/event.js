@@ -2,6 +2,9 @@
 
 const express = require('express');
 const Event = require('./../models/event');
+const uploader = require('./../file-uploader');
+
+
 
 const eventRouter = new express.Router();
 
@@ -9,15 +12,17 @@ eventRouter.get('/create', (req, res, next) => {
   res.render('event/create');
 });
 
-eventRouter.post('/create', (req, res, next) => {
+eventRouter.post('/create', uploader.single('photo'), (req, res, next) => {
   //console.log(req.body);
   const { title, description, date, endDate, latitude, longitude } = req.body;
   const creator = req.user._id;
+  const photo = req.file.url;
   Event.create({
     title,
     description,
     date,
     endDate,
+    photo,
     location: {
       coordinates: [longitude, latitude]
     },
