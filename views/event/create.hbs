@@ -1,6 +1,6 @@
 <h1>Create a New Event</h1>
 
-<form action="" method="POST" >
+<form action="" method="POST" enctype="multipart/form-data">
   <label for="create-event">Event Title</label>
   <input required id="create-event" type="text" name="title" placeholder="Event Title">
 
@@ -17,7 +17,10 @@
   <input required id="select-latitude" type="text" name="latitude" placeholder="Latitude">
 
   <label for="select-longitude">Longitude</label>
-  <input required id="select-longitude" type="text" name="longitude" placeholder="Longitude"> 
+  <input required id="select-longitude" type="text" name="longitude" placeholder="Longitude">
+
+  <label for="photo-input">Add a Photo</label>
+  <input id="photo-input" type="file" name="photo" >
 
   <button>Create Event</button>
 </form>

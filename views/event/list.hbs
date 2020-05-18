@@ -1,4 +1,8 @@
+<h1>Event list</h1>
+
 <div id="map-container" ></div>
+
+<button id="user-location">Locate Me</button>
 
 <ul>
   {{#each events}}
@@ -10,6 +14,8 @@
 <script>
   function initMap() {
     const events = {{{json events}}};
+
+    const $userLocation = document.getElementById('user-location');
         
     const $mapContainer = document.getElementById('map-container');
 
@@ -35,8 +41,34 @@
         const endpoint = `${event._id}`;
         window.location = endpoint;
       })
+    };
 
-    }
+    let userLatitude;
+    let userLongitude;
+
+    $userLocation.addEventListener('click', () => {
+      navigator.geolocation.getCurrentPosition(result => {
+        userLatitude = result.coords.latitude;
+        userLongitude = result.coords.longitude;
+        console.log(userLatitude, userLongitude);
+      }, error => {
+        console.log(error);
+      });
+    })
+
+    const userLocation = new window.google.maps.Marker({
+      map,
+      position: {
+        lat: Number(userLatitude),
+        lng: Number(userLongitude)
+      } 
+    })
+    
+    console.log('user location is', userLocation)
+
+    markers.push(userLocation);
+    
+
   }
 
 </script>
