@@ -4,24 +4,31 @@
 {{> eventitem }}
 {{/with}}
 
-<div id="map-container" ></div>
+<h2>Location: </h2>
+<div id="map-container"></div>
+
+<form action="/event/{{event._id}}/edit" method="POST">
+  <button>Edit or Remove this Event</button>
+</form>
 
 <script>
   function initMap() {
     const event = {{{json event}}};
+    const eventLat = event.location.coordinates[1]
+    const eventLng = event.location.coordinates[0]
     //console.log(event.location.coordinates); 
     const $mapContainer = document.getElementById('map-container');
 
     const map = new window.google.maps.Map($mapContainer, {
-      center: {lat: 38.74, lng: -9.14 },
-      zoom: 10
+      center: {lat: eventLat, lng: eventLng },
+      zoom: 14
     });
 
     const marker = new window.google.maps.Marker({
       map,
       position: {
-        lat: event.location.coordinates[1],
-        lng: event.location.coordinates[0]
+        lat: eventLat,
+        lng: eventLng
       }
     });
 
