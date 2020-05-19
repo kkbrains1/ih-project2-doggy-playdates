@@ -2,11 +2,12 @@ const express = require('express');
 const User = require('./../models/user');
 const userRouter = new express.Router();
 const Dog = require('./../models/dog');
-const Breed = require('./../models/breed');
 
-userRouter.get('/:id', (req, res, next) => {
-  const userId = req.params.id;
 
+
+userRouter.get('/', (req, res, next) => {
+  const userId = req.session.user;
+  console.log(req.session);
   let userData;
 
   User.findById(userId)
