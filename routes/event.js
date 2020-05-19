@@ -4,8 +4,6 @@ const express = require('express');
 const Event = require('./../models/event');
 const uploader = require('./../file-uploader');
 
-
-
 const eventRouter = new express.Router();
 
 eventRouter.get('/create', (req, res, next) => {
@@ -45,6 +43,23 @@ eventRouter.get('/list', (req, res, next) => {
       res.render('event/list', { events });
     })
     .catch((error) => {
+      next(error);
+    });
+});
+
+eventRouter.get('/search', (req, res, next) => {
+  console.log('searching', req.query);
+  const {userLatitude, userLongitude, distance} = req.query;
+  const kmToDegrees = value => value / (40000 / 360);
+
+  Event.find()
+    .where('location')
+    .within()
+    .circle({center: [userLongitude, userLatitude],  radius: kmToDegrees(distance)})
+    .then(events => {
+      res.render('event/list', {events});
+    })
+    .catch(error => {
       next(error);
     });
 });

@@ -1,8 +1,16 @@
 <h1>Event list</h1>
 
 <div id="map-container" ></div>
+  <button id="user-location" class="locate-user">Locate Me</button>
+<form action="/event/search">
+  <input required id="user-latitude-input" type="hidden" name="userLatitude" placeholder="Your Latitude">
+  <input required id="user-longitude-input" type="hidden" name="userLongitude" placeholder="Your Longitude">
+  <label for="distance-input">Distance (km)</label>
+  <input required id="distance-input" type="number" min="0" max="200" name="distance" placeholder="Distance">
 
-<button id="user-location">Locate Me</button>
+  <button class="locate-user">Search Events near Me</button>
+</form>
+
 
 <ul>
   {{#each events}}
@@ -12,64 +20,59 @@
 
 
 <script>
-  function initMap() {
-    const events = {{{json events}}};
+  let map;
+  let marker;
+  const markers = [];
 
-    const $userLocation = document.getElementById('user-location');
-        
+  const $userLocation = document.getElementById('user-location');
+  const $inputLatitude = document.getElementById('user-latitude-input');
+  const $inputLongitude = document.getElementById('user-longitude-input');  
+
+  function initMap() {
+    const events = {{{json events}}};    
     const $mapContainer = document.getElementById('map-container');
 
-    const map = new window.google.maps.Map($mapContainer, {
+    map = new window.google.maps.Map($mapContainer, {
       center: {lat: 38.74, lng: -9.14 },
       zoom: 10
     });
 
-    const markers = [];
-
     for (let event of events) {
-      const marker = new window.google.maps.Marker({
-        map,
-        position: {
-          lat: event.location.coordinates[1],
-          lng: event.location.coordinates[0]
-        }
-      });
-
-      markers.push(marker);
+      addMarker( {lat: event.location.coordinates[1], lng: event.location.coordinates[0]} , 'red' );
 
       marker.addListener('click', () => {
         const endpoint = `${event._id}`;
         window.location = endpoint;
       })
-    };
-
-    let userLatitude;
-    let userLongitude;
-
-    $userLocation.addEventListener('click', () => {
-      navigator.geolocation.getCurrentPosition(result => {
-        userLatitude = result.coords.latitude;
-        userLongitude = result.coords.longitude;
-        console.log(userLatitude, userLongitude);
-      }, error => {
-        console.log(error);
-      });
-    })
-
-    const userLocation = new window.google.maps.Marker({
-      map,
-      position: {
-        lat: Number(userLatitude),
-        lng: Number(userLongitude)
-      } 
-    })
-    
-    console.log('user location is', userLocation)
-
-    markers.push(userLocation);
-    
-
+    };  
   }
+
+  function addMarker(latLng, color) {
+    let url = "http://maps.google.com/mapfiles/ms/icons/";
+    url += color + "-dot.png";
+
+    marker = new google.maps.Marker({
+      map: map,
+      position: latLng,
+      icon: {
+        url: url
+      }
+    });
+    markers.push(marker);
+  }
+
+  $userLocation.addEventListener('click', () => {
+
+    navigator.geolocation.getCurrentPosition(result => {
+      userLatitude = result.coords.latitude;
+      userLongitude = result.coords.longitude;
+      addMarker( {lat: userLatitude, lng: userLongitude} , 'green');
+      $inputLatitude.value = Number(userLatitude);
+      $inputLongitude.value = Number(userLongitude);
+    }, error => {
+      console.log(error);
+    });
+  })
 
 </script>
 
