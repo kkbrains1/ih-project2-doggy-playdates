@@ -47,6 +47,23 @@ eventRouter.get('/list', (req, res, next) => {
     });
 });
 
+eventRouter.get('/search', (req, res, next) => {
+  console.log('searching', req.query);
+  const {userLatitude, userLongitude, distance} = req.query;
+  const kmToDegrees = value => value / (40000 / 360);
+
+  Event.find()
+    .where('location')
+    .within()
+    .circle({center: [userLongitude, userLatitude],  radius: kmToDegrees(distance)})
+    .then(events => {
+      res.render('event/list', {events});
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 eventRouter.get('/:eventId', (req, res, next) => {
   const eventId = req.params.eventId;
   Event.findById(eventId)
