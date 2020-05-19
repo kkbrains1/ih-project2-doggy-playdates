@@ -6,27 +6,35 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/styles/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
   </head>
   <body>
-    <nav>
-      <a href="/">Home</a>
-{{!--         <a href="/event/create">Create a new Event</a>
-        <a href="/event/list">See all our Events</a> --}}
-      {{#if user}}
-        <!-- <a href="/">{{user.name}}'s Profile</a> -->
-        <a href="#">See Users</a>
-        <a href="/event/list">See Events</a> <!-- adjust link later -->
-        <a href="/event/create">Create Event</a> <!-- adjust link later -->
-        <a href="/profile">Edit Profile</a> <!-- adjust link later -->
-        <form action="/authentication/sign-out" method="POST">
-          <button>Sign Out</button>
-        </form>
-        {{else}}
-        <a href="/authentication/sign-in">Sign In</a>
-        <a href="/authentication/sign-up">Sign Up</a>
-      {{/if}}
-    </nav>
+    <div class="menu">
+
+        <nav>
+          <a href="/">Home</a>
+    {{!--         <a href="/event/create">Create a new Event</a>
+            <a href="/event/list">See all our Events</a> --}}
+          {{#if user}}
+            <!-- <a href="/">{{user.name}}'s Profile</a> -->
+            <a href="#">See Users</a>
+            <a href="/event/list">See Events</a> <!-- adjust link later -->
+            <a href="/event/create">Create Event</a> <!-- adjust link later -->
+            <a href="/user">My Profile</a> <!-- adjust link later -->
+            <form action="/authentication/sign-out" method="POST">
+              <button>Sign Out</button>
+            </form>
+            {{else}}
+            <a href="/authentication/sign-in">Sign In</a>
+            <a href="/authentication/sign-up">Sign Up</a>
+          {{/if}}
+        </nav>
+
+    </div>
     {{{body}}}
     <script src="/scripts/script.js"></script>
+    <footer>
+      made by Cris and Karen H.
+    </footer>
   </body>
 </html>
