@@ -4,8 +4,6 @@ const express = require('express');
 const Event = require('./../models/event');
 const uploader = require('./../file-uploader');
 
-
-
 const eventRouter = new express.Router();
 
 eventRouter.get('/create', (req, res, next) => {
