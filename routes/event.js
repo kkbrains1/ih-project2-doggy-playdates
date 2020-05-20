@@ -12,7 +12,7 @@ eventRouter.get('/create', (req, res, next) => {
 
 eventRouter.post('/create', uploader.single('photo'), (req, res, next) => {
   //console.log(req.body);
-  const { title, description, date, endDate, latitude, longitude } = req.body;
+  const { title, description, date, endDate, address, latitude, longitude } = req.body;
   const creator = req.user._id;
   const photo = req.file.url;
   Event.create({
@@ -20,6 +20,7 @@ eventRouter.post('/create', uploader.single('photo'), (req, res, next) => {
     description,
     date,
     endDate,
+    address,
     photo,
     location: {
       coordinates: [longitude, latitude]
