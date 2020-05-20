@@ -7,21 +7,23 @@
         <input type="file" id="picture-input" name="photo">
         <button>Save</button> 
       </form>
-      <form action="">
-        <button>Add new pet</button>
+      <form action="" method="POST">
+      <a href="/dog/create"> Add new pet </a>
       </form>
     </div>
     <div class="user-data">
       <h1>{{user.name}}</h1>
       <p>Email: {{user.email}}</p>
+      <div class="pets-section">
         {{#each user.dogs}}
         <div class="pet-card">         
-          <img src="/images/dog-profile-test.jpg" alt="">
+          <img src="{{photo}}" alt="">
           <h3>{{name}}</h3>
           <p>{{breed.breed}}</p>
         </div>
         <a href="#">Edit</a>
         {{/each}}
+      </div>
     </div>
   </div>  
 </div>

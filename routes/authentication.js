@@ -47,7 +47,7 @@ router.post('/sign-up', (req, res, next) => {
     })
     .then((document) => {
       req.session.user = document._id;
-      res.redirect('/private');
+      res.redirect('/event/list');
     })
     .catch((error) => {
       next(error);
