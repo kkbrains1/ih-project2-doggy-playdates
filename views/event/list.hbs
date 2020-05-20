@@ -34,11 +34,14 @@
     </div>
   </div>
 
-  <ul>
-    {{#each events}}
-      {{> eventitem}}
-    {{/each}}
-  </ul>
+  <div class="second-section">
+    <ul>
+      {{#each events}}
+        {{> eventitem}}
+        <a href="/event/{{_id}}">Details</a>
+      {{/each}}
+    </ul>
+  </div>
 </div>
 
 

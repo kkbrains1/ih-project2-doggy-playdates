@@ -1,7 +1,7 @@
 $font-sans: 'Roboto Condensed', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
 $orange: #FF7D2A;
-$minMain: calc(100vh - 50px);
+$minMain: calc(100vh - 130px);
 
 * {
   &,
@@ -26,6 +26,7 @@ body {
 
 .main {
   min-height: $minMain;
+  margin-top: 80px;
 }
 
 a {
@@ -133,8 +134,6 @@ textarea {
     width: 100vw;
     height: $minMain;
   }
-
-  button {}
 }
 
 /*.hero {
@@ -223,7 +222,7 @@ textarea {
   background-image: url('/images/sign-up-bg.jpg');
   background-size: cover;
   form {
-    margin-top: 5em;  
+    margin: 1em; 
     padding: 5em;
     background-color: white;
     box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
@@ -255,10 +254,13 @@ textarea {
   align-items: center;
   flex-direction: column;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 =======
   margin-top: 5em;  
+=======
+>>>>>>> dcc60195d5eca35a7048ba94d50babadb8eb13a4
   background-color: $grey;
   .form-picture {
     display: flex;
@@ -327,15 +329,16 @@ textarea {
 }
 
 .event-card {
-  width: 90vw;
-  background-color: $grey;
+  width: 80vw;
+  box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
+  background-color: white;
   display: flex;
   flex-direction: row;
   margin-left: 0;
-  margin-top: 10em;
+  margin-top: 5em;
   img {
-    width: 400px;
-    height: 300px;
+    width: 500px;
+    height: 400px;
   }
   h1 {
     font-weight: 700;
@@ -360,9 +363,10 @@ textarea {
 }
 
 .event-list {
-  margin-top: 8em;
+  width: 100vw;
   .items {
     width: 600px;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -382,7 +386,15 @@ textarea {
   }
   .first-section {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+
+  .second-section {
+    background-color: $orange;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 >>>>>>> 16afa14315fafefe22b1ef78cd71809444461427

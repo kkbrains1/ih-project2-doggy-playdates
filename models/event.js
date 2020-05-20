@@ -25,6 +25,9 @@ const eventSchema = new mongoose.Schema(
         }
       ]
     },
+    address: {
+      type: String
+    },
     date: {
       type: Date,
       required: true
