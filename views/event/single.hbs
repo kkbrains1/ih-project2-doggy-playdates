@@ -3,11 +3,12 @@
 {{#with event}}
 {{> eventitem }}
 {{/with}}
+<p>Start : {{startDate}}</p>
 
 <h2>Location: </h2>
 <div id="map-container"></div>
 
-<form action="/event/{{event._id}}/edit" method="POST">
+<form action="/event/{{event._id}}/edit">
   <button>Edit or Remove this Event</button>
 </form>
 
