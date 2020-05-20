@@ -1,6 +1,6 @@
 <h1>Create a New Event</h1>
 
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
   <label for="create-event">Event Title</label>
   <input required id="create-event" type="text" name="title" placeholder="Event Title">
 
@@ -28,25 +28,58 @@
 </form>
 
 <script>
-  
-  const dateTimeNow = new Date();
-  console.log(dateTimeNow);
 
-  let  $startDateTime = document.getElementById('event-start');
-  let $endDateTime = document.getElementById('event-end'); 
+ 
+  //console.log($endDateTime.value)
 
+  function validateForm(){
+    let dateTimeNow = new Date();
+    let $startDateTime = document.getElementById('event-start');
+    let $endDateTime = document.getElementById('event-end'); 
+    let $photo = document.getElementById('photo-input'); 
+    const startDateTime = new Date($startDateTime.value);
+    const endDateTime = new Date($endDateTime.value);
+    if (startDateTime < dateTimeNow) {
+      alert('Event Start cannot be in the past');
+      return false;
+    } else if (startDateTime >= endDateTime) {
+        alert('Event End must be after Event Start');
+        return false;
+      } else {
+          return true;
+        }
+  };
+
+   /*
   $startDateTime.addEventListener('change', event => {
-    console.log('start time event: ', event.srcElement.value);
-    $startDateTime = event.srcElement.value
+   
+     
+  console.log($startDateTime.value)
+    //console.log(dateTimeNow)
+    $startDateTime.setAttribute("min", dateTimeNow);
+    
+    console.log('start time event: ', $startDateTime);
+    
+    if ($startDateTime.validity.rangeUnderflow) {
+      $startDateTime.setCustomValidity("Start Date Cannot be in the past..");
+    } else {
+      $startDateTime.setCustomValidity("");
+    }
+
   });
 
   $endDateTime.addEventListener('change', event => {
-    console.log('start time event: ', event.srcElement.value);
-    $endDateTime = event.srcElement.value
+    const dateTimeNow = new Date();
+    console.log(dateTimeNow)
+    $endDateTime = new Date(event.srcElement.value).getTime();
+    console.log('end time event: ', $endDateTime);
+    if ($endDateTime <= dateTimeNow || $endDateTime <= $startDateTime) {
+      alert('end time must be in the future and cannot be smaller than the start time');
+    } 
   });
+  */
   
   
-
   let map;
   let marker;
 

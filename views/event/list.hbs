@@ -1,14 +1,14 @@
 <h1>Event list</h1>
 
 <div id="map-container" ></div>
-  <button id="user-location" class="locate-user">Locate Me</button>
-<form action="/event/search">
+  <button id="user-location">Locate Me</button>
+<form action="/event/search" onsubmit="return validateForm()">
   <input required id="user-latitude-input" type="hidden" name="userLatitude" placeholder="Your Latitude">
   <input required id="user-longitude-input" type="hidden" name="userLongitude" placeholder="Your Longitude">
   <label for="distance-input">Distance (km)</label>
-  <input required id="distance-input" type="number" min="0" max="200" name="distance" placeholder="Distance">
+  <input required id="distance-input" type="number" min="0" max="500" name="distance" placeholder="Distance">
 
-  <button class="locate-user">Search Events near Me</button>
+  <button id="search-events">Search Events near Me</button>
 </form>
 
 
@@ -20,13 +20,24 @@
 
 
 <script>
-  let map;
-  let marker;
-  const markers = [];
 
   const $userLocation = document.getElementById('user-location');
   const $inputLatitude = document.getElementById('user-latitude-input');
   const $inputLongitude = document.getElementById('user-longitude-input');  
+
+  function validateForm() {
+    if ($inputLatitude.value === '' || $inputLongitude.value === '') {
+      alert(`Please let us know where your are by clicking on the 'Locate Me' button`);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  let map;
+  let marker;
+  const markers = [];
+
 
   function initMap() {
     const events = {{{json events}}};    
@@ -34,12 +45,11 @@
 
     map = new window.google.maps.Map($mapContainer, {
       center: {lat: 38.74, lng: -9.14 },
-      zoom: 10
+      zoom: 12
     });
 
     for (let event of events) {
       addMarker( {lat: event.location.coordinates[1], lng: event.location.coordinates[0]} , 'red' );
-
       marker.addListener('click', () => {
         const endpoint = `${event._id}`;
         window.location = endpoint;
@@ -62,13 +72,14 @@
   }
 
   $userLocation.addEventListener('click', () => {
-
+    
     navigator.geolocation.getCurrentPosition(result => {
       userLatitude = result.coords.latitude;
       userLongitude = result.coords.longitude;
       addMarker( {lat: userLatitude, lng: userLongitude} , 'green');
       $inputLatitude.value = Number(userLatitude);
       $inputLongitude.value = Number(userLongitude);
+      console.log($inputLatitude.value)
     }, error => {
       console.log(error);
     });
