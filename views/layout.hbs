@@ -10,31 +10,30 @@
   </head>
   <body>
     <div class="menu">
-
-        <nav>
-          <a href="/">Home</a>
-    {{!--         <a href="/event/create">Create a new Event</a>
-            <a href="/event/list">See all our Events</a> --}}
-          {{#if user}}
-            <!-- <a href="/">{{user.name}}'s Profile</a> -->
-            <a href="#">See Users</a>
-            <a href="/event/list">See Events</a> <!-- adjust link later -->
-            <a href="/event/create">Create Event</a> <!-- adjust link later -->
-            <a href="/user">My Profile</a> <!-- adjust link later -->
-            <form action="/authentication/sign-out" method="POST">
-              <button>Sign Out</button>
-            </form>
-            {{else}}
-            <a href="/authentication/sign-in">Sign In</a>
-            <a href="/authentication/sign-up">Sign Up</a>
-          {{/if}}
-        </nav>
-
+      <nav>
+        <a href="/">Home</a>
+        {{#if user}}
+          <a href="#">See Users</a>
+          <a href="/event/list">See Events</a> <!-- adjust link later -->
+          <a href="/event/create">Create Event</a> <!-- adjust link later -->
+          <a href="/user/profile">My Profile</a> <!-- adjust link later -->
+          <form action="/authentication/sign-out" method="POST">
+            <button>Sign Out</button>
+          </form>
+        {{else}}
+          <a href="/authentication/sign-in">Sign In</a>
+          <a href="/authentication/sign-up">Sign Up</a>
+        {{/if}}
+      </nav>
     </div>
-    {{{body}}}
-    <script src="/scripts/script.js"></script>
+    <div class="main">
+      {{{body}}}
+    </div>
     <footer>
-      made by Cris and Karen H.
+      Doggy Playdates © 2020 - Developed by Cris and Karen H.
     </footer>
+    <script src="/scripts/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
 </html>
