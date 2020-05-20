@@ -3,7 +3,6 @@
 const express = require('express');
 const Event = require('./../models/event');
 const uploader = require('./../file-uploader');
-const dateAndTime = require('date-and-time');
 
 const eventRouter = new express.Router();
 
