@@ -1,6 +1,6 @@
 $font-sans: 'Roboto Condensed', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
-$orange: #FF7D2A;
+$orange: #ff7d2a;
 $minMain: calc(100vh - 130px);
 
 * {
@@ -40,7 +40,7 @@ a {
   display: flex;
   justify-content: center;
   background-color: white;
-  box-shadow: -1px 7px 6px -7px rgba(0,0,0,0.91);
+  box-shadow: -1px 7px 6px -7px rgba(0, 0, 0, 0.91);
   position: fixed;
   z-index: 999;
   nav {
@@ -156,7 +156,6 @@ textarea {
     color: white;
   }
 }
-
 .second-block {
   width: 100vw;
   height: 600px;
@@ -203,14 +202,14 @@ textarea {
   background-image: url('/images/sign-in-bg.jpg');
   background-size: cover;
   background-color: gainsboro;
-  
+
   form {
     padding: 5em;
     background-color: white;
-    box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
+    box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
   }
   button {
-    background-color:$orange;
+    background-color: $orange;
   }
 }
 
@@ -222,10 +221,10 @@ textarea {
   background-image: url('/images/sign-up-bg.jpg');
   background-size: cover;
   form {
-    margin: 1em; 
+    margin: 1em;
     padding: 5em;
     background-color: white;
-    box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
+    box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
     input {
       width: 600px;
     }
@@ -235,7 +234,7 @@ textarea {
       border: 1px solid $grey;
       border-radius: 0;
       font-family: $font-sans;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
   }
   button {
@@ -253,48 +252,40 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-
-=======
-  margin-top: 5em;  
-=======
->>>>>>> dcc60195d5eca35a7048ba94d50babadb8eb13a4
   background-color: $grey;
   .form-picture {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     width: 300px;
-      img {
-        width: 200px;
-        height: 200px;
-      }
-      form {
-        width: 200px;
-      }
-      input {
-        width: 200px;
-        font-size: 0.8em;
-      }
-      button {
-        width: 100px;
-        height: 30px;
-        font-size: 0.8em;
-        padding: 0.2em;
-      }
+    img {
+      width: 200px;
+      height: 200px;
     }
+    form {
+      width: 200px;
+    }
+    input {
+      width: 200px;
+      font-size: 0.8em;
+    }
+    button {
+      width: 100px;
+      height: 30px;
+      font-size: 0.8em;
+      padding: 0.2em;
+    }
+  }
   .user-data {
     width: 600px;
     height: 150px;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     h1 {
       font-size: 3em;
       font-weight: 700;
       margin: 0;
-    } 
+    }
   }
   .pet-card {
     width: 250px;
@@ -323,14 +314,14 @@ textarea {
     display: flex;
     height: 600px;
     background-color: white;
-    box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
+    box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
     padding: 2em;
   }
 }
 
 .event-card {
   width: 80vw;
-  box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
+  box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
   background-color: white;
   display: flex;
   flex-direction: row;
@@ -397,4 +388,3 @@ textarea {
     align-items: center;
   }
 }
->>>>>>> 16afa14315fafefe22b1ef78cd71809444461427

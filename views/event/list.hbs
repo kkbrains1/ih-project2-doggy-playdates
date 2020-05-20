@@ -1,22 +1,3 @@
-<h1>Event list</h1>
-
-<div id="map-container" ></div>
-  <button id="user-location">Locate Me</button>
-<form action="/event/search" onsubmit="return validateForm()">
-  <input required id="user-latitude-input" type="hidden" name="userLatitude" placeholder="Your Latitude">
-  <input required id="user-longitude-input" type="hidden" name="userLongitude" placeholder="Your Longitude">
-  <label for="distance-input">Distance (km)</label>
-  <input required id="distance-input" type="number" min="0" max="500" name="distance" placeholder="Distance">
-
-  <button id="search-events">Search Events near Me</button>
-</form>
-
-
-<ul>
-  {{#each events}}
-    {{> eventitem}}
-  {{/each}}
-</ul>
 <div class="event-list">
 
   <h1>Event list</h1>
@@ -24,7 +5,7 @@
     <div id="map-container"></div>
     <div class="items">
       <button id="user-location" class="locate-user">Locate Me</button>
-      <form action="/event/search">
+      <form action="/event/search" onsubmit="return validateForm()">
         <input required id="user-latitude-input" type="hidden" name="userLatitude" placeholder="Your Latitude">
         <input required id="user-longitude-input" type="hidden" name="userLongitude" placeholder="Your Longitude">
         <label for="distance-input">Distance (km)</label>
