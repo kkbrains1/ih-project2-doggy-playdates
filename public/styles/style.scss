@@ -1,5 +1,7 @@
 $font-sans: 'Roboto Condensed', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
+$orange: #FF7D2A;
+$minMain: calc(100vh - 50px);
 
 * {
   &,
@@ -7,6 +9,7 @@ $grey: hsla(0, 0, 75%, 0.5);
   &:after {
     box-sizing: border-box;
   }
+  max-width: 100vw;
 }
 
 body {
@@ -19,6 +22,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.main {
+  min-height: $minMain;
 }
 
 a {
@@ -34,6 +41,7 @@ a {
   background-color: white;
   box-shadow: -1px 7px 6px -7px rgba(0,0,0,0.91);
   position: fixed;
+  z-index: 999;
   nav {
     display: flex;
     width: 62em;
@@ -54,7 +62,7 @@ a {
         margin-right: auto;
       }
       &:hover {
-        color: #FF7D2A;
+        color: $orange;
         text-decoration: none;
       }
     }
@@ -62,15 +70,18 @@ a {
 }
 
 footer {
-  width: 100vw;
+  width: 100%;
   height: 50px;
   bottom: 0;
-  background-color: #FF7D2A;
+  background-color: $orange;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+ul {
+  padding: 0;
+}
 
 h1,
 h2,
@@ -113,11 +124,20 @@ textarea {
 }
 
 #map-container {
-  width: 100%;
+  width: 50vw;
   height: 30em;
 }
 
-.hero {
+.carousel-item {
+  img {
+    width: 100vw;
+    height: $minMain;
+  }
+
+  button {}
+}
+
+/*.hero {
   width: 100vw;
   height: 800px;
   margin-top: 20px;
@@ -166,14 +186,14 @@ textarea {
     padding-right: 20em;
     button {
       width: 400px;
-      background-color: #FF7D2A;
+      background-color: $orange;
       margin-top: 5em;
       p {
         font-size: 1.5em;
       }
     }
   }
-}
+}*/
 
 .form-container {
   width: 100vw;
@@ -191,13 +211,12 @@ textarea {
     box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
   }
   button {
-    background-color: #FF7D2A;
+    background-color:$orange;
   }
 }
 
 .sign-up-container {
   width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +227,6 @@ textarea {
     padding: 5em;
     background-color: white;
     box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
-    width: 800px;
     input {
       width: 600px;
     }
@@ -218,11 +236,14 @@ textarea {
       border: 1px solid $grey;
       border-radius: 0;
       font-family: $font-sans;
-
+      margin-bottom: .5rem;
     }
   }
   button {
-    background-color: #FF7D2A;
+    background-color: $orange;
+    display: flex;
+    align-self: center;
+    justify-content: center;
   }
 }
 
@@ -233,4 +254,130 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 5em;  
+  background-color: $grey;
+  .form-picture {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 300px;
+      img {
+        width: 200px;
+        height: 200px;
+      }
+      form {
+        width: 200px;
+      }
+      input {
+        width: 200px;
+        font-size: 0.8em;
+      }
+      button {
+        width: 100px;
+        height: 30px;
+        font-size: 0.8em;
+        padding: 0.2em;
+      }
+    }
+  .user-data {
+    width: 600px;
+    height: 150px;
+    display: flex;
+    flex-direction: column; 
+    h1 {
+      font-size: 3em;
+      font-weight: 700;
+      margin: 0;
+    } 
+  }
+  .pet-card {
+    width: 250px;
+    height: 300px;
+    background-color: $orange;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin-top: 2em;
+    img {
+      width: 300px;
+      height: 200px;
+      border-radius: 2px;
+    }
+    h3 {
+      margin: 0;
+      font-weight: 700;
+    }
+    a {
+      z-index: 1;
+    }
+  }
+  .row-container {
+    display: flex;
+    height: 600px;
+    background-color: white;
+    box-shadow: 4px 3px 8px -2px rgba(0,0,0,0.91);
+    padding: 2em;
+  }
+}
+
+.event-card {
+  width: 90vw;
+  background-color: $grey;
+  display: flex;
+  flex-direction: row;
+  margin-left: 0;
+  margin-top: 10em;
+  img {
+    width: 400px;
+    height: 300px;
+  }
+  h1 {
+    font-weight: 700;
+  }
+  .event-name-description {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    padding: 0 1em;
+  }
+  .event-details {
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+    font-size: smaller;
+    padding: 1em;
+  }
+  .column-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.event-list {
+  margin-top: 8em;
+  .items {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form {
+      input {
+        width: 400px;
+      }
+    }
+    button {
+      width: 400px;
+      margin-bottom: 5em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .first-section {
+    display: flex;
+    flex-direction: row;
+  }
 }

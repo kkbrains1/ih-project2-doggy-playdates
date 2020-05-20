@@ -1,22 +1,26 @@
-<h1>Event list</h1>
+<div class="event-list">
 
-<div id="map-container" ></div>
-  <button id="user-location" class="locate-user">Locate Me</button>
-<form action="/event/search">
-  <input required id="user-latitude-input" type="hidden" name="userLatitude" placeholder="Your Latitude">
-  <input required id="user-longitude-input" type="hidden" name="userLongitude" placeholder="Your Longitude">
-  <label for="distance-input">Distance (km)</label>
-  <input required id="distance-input" type="number" min="0" max="200" name="distance" placeholder="Distance">
+  <h1>Event list</h1>
+  <div class="first-section">
+    <div id="map-container"></div>
+    <div class="items">
+      <button id="user-location" class="locate-user">Locate Me</button>
+      <form action="/event/search">
+        <input required id="user-latitude-input" type="hidden" name="userLatitude" placeholder="Your Latitude">
+        <input required id="user-longitude-input" type="hidden" name="userLongitude" placeholder="Your Longitude">
+        <label for="distance-input">Distance (km)</label>
+        <input required id="distance-input" type="number" min="0" max="200" name="distance" placeholder="Distance">
+        <button class="locate-user">Search Events near Me</button>
+      </form>
+    </div>
+  </div>
 
-  <button class="locate-user">Search Events near Me</button>
-</form>
-
-
-<ul>
-  {{#each events}}
-    {{> eventitem}}
-  {{/each}}
-</ul>
+  <ul>
+    {{#each events}}
+      {{> eventitem}}
+    {{/each}}
+  </ul>
+</div>
 
 
 <script>

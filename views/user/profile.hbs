@@ -1,17 +1,27 @@
 <div class="profile-container">
-
-<div</div>
-  <h1>{{user.name}}</h1>
-
-  <form method="POST">
-    <label for="picture-input">Picture</label>
-    <input type="file" id="picture-input" name="picture">
-    <button>Save</button>
-  </form>
-  <h2></h2>
-  <h2>{{user.email}}</h2>
-  {{#each user.dogs}}
-  <h2>{{name}}</h2>
-  <h2>{{breed.breed}}</h2>
-  {{/each}}
+  <div class="row-container">
+    <div class="form-picture">
+      <img src="{{user.photoUrl}}" alt="">
+      <form action="/user/avatar-upload" method="POST" enctype="multipart/form-data">
+        <label for="picture-input">Picture</label>
+        <input type="file" id="picture-input" name="photo">
+        <button>Save</button> 
+      </form>
+      <form action="">
+        <button>Add new pet</button>
+      </form>
+    </div>
+    <div class="user-data">
+      <h1>{{user.name}}</h1>
+      <p>Email: {{user.email}}</p>
+        {{#each user.dogs}}
+        <div class="pet-card">         
+          <img src="/images/dog-profile-test.jpg" alt="">
+          <h3>{{name}}</h3>
+          <p>{{breed.breed}}</p>
+        </div>
+        <a href="#">Edit</a>
+        {{/each}}
+    </div>
+  </div>  
 </div>

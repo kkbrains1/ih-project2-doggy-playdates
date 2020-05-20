@@ -21,7 +21,8 @@ const userSchema = new mongoose.Schema(
     dogs: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Dog'
-    }]
+    }],
+    photoUrl: String
   },
   {
     timestamps: {
