@@ -19,7 +19,7 @@ const userRouter = require('./routes/user');
 const dogRouter = require('./routes/dog');
 const hbs = require('hbs');
 const hbsJson = require('hbs-json');
-
+const helpers = require('./helpers/helpers');
 
 const app = express();
 
@@ -28,13 +28,16 @@ app.set('view engine', 'hbs');
 
 hbs.registerPartials(join(__dirname, '/views/partials'));
 hbs.registerHelper('json', hbsJson);
+hbs.registerHelper('selected', helpers.selected);
+hbs.registerHelper('checked', helpers.checked);
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(
   sassMiddleware({
     src: join(__dirname, 'public'),
     dest: join(__dirname, 'public'),
-    outputStyle: process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
+    outputStyle:
+      process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
     force: process.env.NODE_ENV === 'development',
     sourceMap: true
   })
