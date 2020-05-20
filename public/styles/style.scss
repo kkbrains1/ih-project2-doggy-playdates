@@ -277,8 +277,6 @@ textarea {
     }
   }
   .user-data {
-    width: 600px;
-    height: 150px;
     display: flex;
     flex-direction: column;
     h1 {
@@ -286,10 +284,16 @@ textarea {
       font-weight: 700;
       margin: 0;
     }
+    .pets-section {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
   .pet-card {
-    width: 250px;
-    height: 300px;
+    min-width: 200px;
+    max-width: 200px;
+    height: 250px;
     background-color: $orange;
     border-radius: 5px;
     display: flex;
@@ -298,8 +302,8 @@ textarea {
     padding: 0;
     margin-top: 2em;
     img {
-      width: 300px;
-      height: 200px;
+      width: 200px;
+      height: 150px;
       border-radius: 2px;
     }
     h3 {
@@ -312,10 +316,10 @@ textarea {
   }
   .row-container {
     display: flex;
-    height: 600px;
     background-color: white;
     box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
     padding: 2em;
+    width: 90vw;
   }
 }
 
@@ -386,5 +390,36 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+}
+
+.create-dog-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  form {
+    width: 60vw;
+    .dog-size {
+      display: flex;
+      div {
+        min-width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    select {
+      width: 600px;
+      padding: 1em;
+      border: 1px solid $grey;
+      border-radius: 0;
+      font-family: $font-sans;
+      margin-bottom: 0.5rem;
+    }
+    input {
+      width: auto;
+    }
   }
 }
