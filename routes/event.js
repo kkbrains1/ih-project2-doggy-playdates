@@ -77,7 +77,7 @@ eventRouter.get('/:eventId/edit', (req, res, next) => {
     .then((event) => {
       let formattedStartDate = event.date;
       formattedStartDate = formattedStartDate.toISOString().replace('Z', '');
-      let formattedEndDate = event.date;
+      let formattedEndDate = event.endDate;
       formattedEndDate = formattedEndDate.toISOString().replace('Z', '');
       res.render('event/edit', { event, formattedStartDate, formattedEndDate });
     })
@@ -86,30 +86,58 @@ eventRouter.get('/:eventId/edit', (req, res, next) => {
     });
 });
 
-eventRouter.post('/:eventId/edit', (req, res, next) => {
+eventRouter.post('/:eventId/edit', uploader.single('photo'), (req, res, next) => {
   const eventId = req.params.eventId;
   const { title, description, date, endDate, address, latitude, longitude } = req.body;
-  const photo = req.file.url;
-  Event.findOneandUpdate(
-    {
-      _id: eventId,
-      creator: req.user._id
-    },
-    {
-      title,
-      description,
-      date,
-      endDate,
-      address,
-      photo,
-      location: {
-        coordinates: [longitude, latitude]
+  let photo;
+  let event;
+  console.log(req.body);
+  Event.findOne({
+    _id: eventId,
+    creator: req.user._id
+  })
+    .then((doc) => {
+      event = doc.toObject();
+      if (req.file) {
+        photo = req.file.url;
+      } else {
+        photo = event.photo;
       }
-    }
-  )
-    .then((event) => {
       console.log(photo);
-      res.redirect('/event/${eventId}', { event });
+      return Event.findByIdAndUpdate(
+        { _id: eventId },
+        {
+          title,
+          description,
+          date,
+          endDate,
+          address,
+          photo,
+          location: {
+            type: 'Point',
+            coordinates: [longitude, latitude]
+          }
+        }
+      );
+    })
+    .then((result) => {
+      console.log('result', result);
+      res.redirect(`/event/${eventId}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+eventRouter.post('/:eventId/delete', (req, res, next) => {
+  const eventId = req.params.eventId;
+  Event.findOneAndRemove({
+    _id: eventId,
+    creator: req.user._id
+  })
+    .then((result) => {
+      console.log(result);
+      res.redirect(`/event/list`);
     })
     .catch((error) => {
       next(error);
