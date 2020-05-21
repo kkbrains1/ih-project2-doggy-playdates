@@ -25,11 +25,11 @@
 
   <div id="map-container" ></div>
 
-  <label for="select-latitude">Latitude</label>
-  <input required id="select-latitude" type="text" name="latitude" placeholder="Latitude" value={{event.location.coordinates.[1]}}>
+  <!--label for="select-latitude">Latitude</label-->
+  <input required hidden id="select-latitude" type="text" name="latitude" placeholder="Latitude" value={{event.location.coordinates.[1]}}>
 
-  <label for="select-longitude">Longitude</label>
-  <input required id="select-longitude" type="text" name="longitude" placeholder="Longitude" value={{event.location.coordinates.[0]}}>
+  <!--label for="select-longitude">Longitude</label-->
+  <input required hidden id="select-longitude" type="text" name="longitude" placeholder="Longitude" value={{event.location.coordinates.[0]}}>
 
   <button>Submit Changes</button>
 </form>
