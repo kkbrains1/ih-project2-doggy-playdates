@@ -5,10 +5,10 @@
 {{> eventitem }}
 
 <div class="event-details">
-  <p>Created by: {{creator.name}} on {{createdDate}}</p>
+  <small><em>Created by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
   <!--span>Latitude: {{location.coordinates.[1]}}</span>
   <span>Longitude: {{location.coordinates.[0]}}</span--> 
-  <p>Last updated: {{updatedDate}}</p>
+  <small><em>Last updated on</em> {{{formatDate updatedDate}}}</small>
   <h2>Location: </h2>
   <p>Address: {{address}}</p>  
 </div>
@@ -21,6 +21,23 @@
   <button>Edit or Remove this Event</button>
 </form>
 {{/if}}
+
+<h2>Comments: </h2>
+
+<ul>
+  {{#each comments}}
+    <li>
+      <p>{{description}}</p>
+      <small><em>Commented by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
+    </li>
+  {{/each}}
+</ul>
+
+<form action="/event/{{event._id}}/comment" method="POST">
+  <label for="comment-input">Post a Comment</label>
+  <textarea required id="comment-input" name="description">Doggo ipsum pupperino</textarea>
+  <button>Submit Comment</button>
+</form>
 
 <script>
   function initMap() {
