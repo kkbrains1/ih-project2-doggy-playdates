@@ -1,0 +1,61 @@
+<div class="create-dog-container">
+  {{#if dog}}
+    <h1>Edit {{dog.name}}'s Profile</h1>
+  {{else}}
+    <h1>Add New Dog</h1>
+  {{/if}}
+    <img src="{{dog.photo}}" alt="">
+  
+  {{#if dog}}
+    <form action="/dog/{{dog._id}}/edit" method="POST" enctype="multipart/form-data">
+  {{else}}
+    <form action="/dog/create" method="POST" enctype="multipart/form-data">
+  {{/if}}
+
+    <label for="picture-input">Picture</label>
+    <input type="file" id="picture-input" name="photo">
+
+    <input type="text" id="dog-name-input" name="name" placeholder="Dog Name" value="{{dog.name}}">
+
+    <div class="dog-size">
+      <div>
+        <input type="radio" id="xs-size" name="size" value="extraSmall" {{{checked "extraSmall" dog.size}}}>
+        <label for="xs-size">Extra Small (6-9 inches)</label>
+      </div>
+      <div>
+        <input type="radio" id="s-size" name="size" value="small" {{{checked "small" dog.size}}}>
+        <label for="s-size">Small (8-12 inches)</label>
+      </div>
+      <div> 
+        <input type="radio" id="m-size" name="size" value="medium" {{{checked "medium" dog.size}}}>
+        <label for="m-size">Medium (14-18 inches)</label>
+      </div>
+      <div> 
+        <input type="radio" id="l-size" name="size" value="large"  {{{checked "large" dog.size}}}>
+        <label for="l-size">Large  (20-24 inches)</label>
+      </div>
+      <div> 
+        <input type="radio" id="xl-size" name="size" value="extraLarge" {{{checked "extraLarge" dog.size}}}>
+        <label for="xl-size">Extra Large  (22-26 inches)</label>
+      </div>
+    </div>
+    <select name="breed">
+      <option value="">Select a breed</option>
+      {{#each breeds}}
+        <option value="{{_id}}" {{{selected _id ../dog.breed._id}}}>{{breed}}</option>
+        <!-- <option value='{{_id}}'>{{breed}}</option> -->
+      {{/each}} 
+    </select>
+
+    <select name="personality">
+      <option value="">Select your dog's personality</option>
+      <option value="friendly" {{{selected 'friendly' dog.personality}}}>Friendly</option>
+      <option value="shy" {{{selected 'shy' dog.personality}}}>Shy</option>
+      <option value="independent" {{{selected 'independent' dog.personality}}}>Independent</option>
+      <option value="marshmallow" {{{selected 'marshmallow' dog.personality}}}>Marshmallow (easy to handle)</option>
+      <option value="hardToHandle" {{{selected 'hardToHandle' dog.personality}}}>Hard to Handle</option>
+    </select>
+  
+    <button>Submit</button>
+  </form>
+</div>

@@ -134,6 +134,20 @@ textarea {
     width: 100vw;
     height: $minMain;
   }
+  .carousel-caption {
+    bottom: 60px;
+  }
+  button {
+    width: 400px;
+    background-color: $orange;
+    a:hover {
+      color: white;
+      text-decoration: none;
+    }
+    a {
+      color: black
+    }
+  }
 }
 
 /*.hero {
@@ -247,7 +261,7 @@ textarea {
 
 .profile-container {
   width: 100vw;
-  height: 100vh;
+  min-height: $minMain;
   display: flex;
   justify-content: center;
   align-items: center;
