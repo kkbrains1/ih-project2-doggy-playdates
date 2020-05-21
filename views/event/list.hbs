@@ -1,6 +1,5 @@
 <div class="event-list">
 
-  <h1>Event list</h1>
   <div class="first-section">
     <div id="map-container"></div>
     <div class="items">
@@ -17,17 +16,21 @@
 
   <div class="second-section">
     <ul>
-      {{#if user}}
-      {{#each events}}
-        {{> eventitem }}
-          <a href="/event/{{_id}}">More Details...</a>
-      {{/each}}
-      {{else}}
-      {{#each (restrictList events 2)}}
-        {{> eventitem }}
-          <a href="/event/{{_id}}">More Details...</a>
-      {{/each}}
-      {{/if}}
+        {{#if user}}
+        {{#each events}}
+          <div class="event-card-list">
+            {{> eventitem }}
+              <a href="/event/{{_id}}">More Details...</a>
+          </div>
+        {{/each}}
+        {{else}}
+        {{#each (restrictList events 2)}}
+        <div class="event-card-list">
+          {{> eventitem }}
+            <a href="/event/{{_id}}">More Details...</a>
+        </div>
+        {{/each}}
+        {{/if}}
     </ul>
   </div>
 </div>

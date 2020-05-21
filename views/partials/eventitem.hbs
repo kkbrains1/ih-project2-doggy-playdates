@@ -1,20 +1,21 @@
-<div class="event-card">
+
   <img src="{{photo}}" alt="photo">
   <div class="column-container">
     <div class="event-name-description">
-     <h1>Event : {{title}}</h1>
+     <h5>Event : {{title}}</h5>
      <p>{{description}}</p>
      <!--p>Start : {{date}}</p-->
-     <p>Starting on: {{{formatDate date}}}</p>
-     <!--p>End : {{endDate}}</p-->
-     <p>Ending on: {{{formatDate endDate}}}</p>
+      <div class="dates">
+        <p>Starting on: {{{formatDate date}}}</p>
+        <!--p>End : {{endDate}}</p-->
+        <p>Ending on: {{{formatDate endDate}}}</p>
+      </div>
     </div>
-    <div class="event-details">
+    
       <!--p>Created by: {{creator.name}} on {{createdDate}}</p>
       <span>Latitude: {{location.coordinates.[1]}}</span>
       <span>Longitude: {{location.coordinates.[0]}}</span>
 
       <p>Last updated: {{updatedDate}}</p-->
-    </div>
+   
   </div>
-</div>
