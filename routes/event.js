@@ -67,14 +67,12 @@ eventRouter.get('/search', (req, res, next) => {
 
 eventRouter.get('/:eventId/edit', (req, res, next) => {
   const eventId = req.params.eventId;
-  //const event;
-  //let formattedStartDate;
-  //let formattedEndDate;
   Event.findOne({
     _id: eventId,
     creator: req.user._id
   })
-    .then((event) => {
+    .then(event => {
+      console.log(event);
       let formattedStartDate = event.date;
       formattedStartDate = formattedStartDate.toISOString().replace('Z', '');
       let formattedEndDate = event.endDate;
@@ -120,11 +118,11 @@ eventRouter.post('/:eventId/edit', uploader.single('photo'), (req, res, next) =>
         }
       );
     })
-    .then((result) => {
+    .then(result => {
       console.log('result', result);
       res.redirect(`/event/${eventId}`);
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
@@ -135,11 +133,11 @@ eventRouter.post('/:eventId/delete', (req, res, next) => {
     _id: eventId,
     creator: req.user._id
   })
-    .then((result) => {
+    .then(result => {
       console.log(result);
       res.redirect(`/event/list`);
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
@@ -150,17 +148,21 @@ eventRouter.get('/:eventId', (req, res, next) => {
   let startdate;
   Event.findById(eventId)
     .populate('event creator')
-    .then((doc) => {
+    .then(doc => {
       event = doc.toObject();
+      if (req.user && event.creator._id.toString() === req.user._id.toString()) {
+        event.owner = true;
+      }
+      //console.log('true?', event.owner, 'req id', req.user._id, 'creator', event.creator._id);
       startdate = event.date;
       console.log('the event date is ', startdate);
       return (startdate = startdate.toString().substr(0, 21));
-    })
-    .then((startDate) => {
+    } )
+    .then(startDate => {
       console.log('the start date is', startDate);
       res.render('event/single', { event, startDate });
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });

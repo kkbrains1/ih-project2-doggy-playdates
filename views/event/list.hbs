@@ -9,7 +9,7 @@
         <input required id="user-latitude-input" type="hidden" name="userLatitude" placeholder="Your Latitude">
         <input required id="user-longitude-input" type="hidden" name="userLongitude" placeholder="Your Longitude">
         <label for="distance-input">Distance (km)</label>
-        <input required id="distance-input" type="number" min="0" max="200" name="distance" placeholder="Distance">
+        <input required id="distance-input" type="number" min="0" max="500" name="distance" placeholder="Distance">
         <button class="locate-user">Search Events near Me</button>
       </form>
     </div>
@@ -18,8 +18,8 @@
   <div class="second-section">
     <ul>
       {{#each events}}
-        {{> eventitem}}
-          <a href="/event/{{_id}}">Details</a>
+        {{> eventitem }}
+          <a href="/event/{{_id}}">More Details...</a>
       {{/each}}
     </ul>
   </div>
@@ -52,7 +52,7 @@
 
     map = new window.google.maps.Map($mapContainer, {
       center: {lat: 38.74, lng: -9.14 },
-      zoom: 12
+      zoom: 10
     });
 
     for (let event of events) {

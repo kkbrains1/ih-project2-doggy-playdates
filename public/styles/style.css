@@ -327,6 +327,8 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center; }
+    .event-list .second-section a {
+      color: blue; }
 
 .create-dog-container {
   width: 100vw;
