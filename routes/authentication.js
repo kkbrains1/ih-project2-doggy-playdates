@@ -74,7 +74,7 @@ router.post('/sign-up', (req, res, next) => {
           from: `Doggy Playdate<${process.env.NODEMAILER_EMAIL}`,
           to: email,
           subject: 'Confirm Account',
-          html: `<a href="http://localhost:3000/authentication/confirm/${document.confirmationCode}">Verify Email</a>`
+          html: `<a href="http:/${process.env.HOST_SERVER}/authentication/confirm/${document.confirmationCode}">Verify Email</a>`
         })
 
       .then(() => {
