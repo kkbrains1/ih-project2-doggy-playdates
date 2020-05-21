@@ -25,11 +25,51 @@ userRouter.get('/profile', (req, res, next) => {
 
 userRouter.post('/avatar-upload', uploader.single('photo'), (req, res, next) => {
   const photoUrl = req.file.url;
+
   User.findByIdAndUpdate(req.session.user, {photoUrl}).then(() => {
     res.redirect('profile');
   }).catch((error) => {
     next(error);
   });
 }); 
+
+
+userRouter.get('/edit', (req, res, next) => {
+  const id = req.session.user;
+  let userData;
+  
+
+  User.findById(id)
+    .then((document) => {
+      userData = document;
+      console.log(userData);
+      res.render('user/edit', {userData});
+    })
+    .catch(error => {
+      next(error);
+    });
+  
+});
+
+userRouter.post('/edit', uploader.single('photo'), (req, res, next) => {
+  const id = req.session.user;
+  const user = { 
+    name: req.body.name,
+    updatedDate: new Date()
+  };
+   
+  if (req.file && req.file.url) {
+    user.photoUrl = req.file.url;
+  }
+
+  User.findByIdAndUpdate(id, user)
+  .then(() => {
+    res.redirect('profile');
+  })
+  .catch(error => {
+    next(error);
+  });
+
+});
 
 module.exports = userRouter;
