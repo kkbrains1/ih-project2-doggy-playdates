@@ -69,31 +69,35 @@ router.post('/sign-up', (req, res, next) => {
       });
     })
     .then((document) => {
-      console.log(document);
-      req.session.user = document._id;
-      transporter.sendMail({
-        from: `Doggy Playdate<${process.env.NODEMAILER_EMAIL}`,
-        to: email,
-        subject: 'Confirm Account',
-        html: `<a href="http://localhost:3000/authentication/confirm/${document.confirmationCode}">Verify Email</a>`
-      });
+      transporter
+        .sendMail({
+          from: `Doggy Playdate<${process.env.NODEMAILER_EMAIL}`,
+          to: email,
+          subject: 'Confirm Account',
+          html: `<a href="http://localhost:3000/authentication/confirm/${document.confirmationCode}">Verify Email</a>`
+        })
 
-      res.redirect('/event/list');
-    })
-    .catch((error) => {
-      next(error);
+      .then(() => {
+        res.render('verify-email');
+      })
+
+        .catch((error) => {
+          next(error);
+        });
     });
 });
 
 router.get('/confirm/:confirmCode', (req, res, next) => {
   const confirmationCode = req.params.confirmCode;
-  User.findOneAndUpdate({confirmationCode},{status: 'Active'}).then(user => {
-    if (user) {
-      res.render('confirmation');
-    } else {
-      res.render('error');
+  User.findOneAndUpdate({ confirmationCode }, { status: 'Active' }).then(
+    (user) => {
+      if (user) {
+        res.render('confirmation');
+      } else {
+        res.render('verify-email');
+      }
     }
-  });
+  );
 });
 
 router.get('/sign-in', (req, res, next) => {
@@ -114,8 +118,13 @@ router.post('/sign-in', (req, res, next) => {
     })
     .then((result) => {
       if (result) {
-        req.session.user = user._id;
-        res.redirect('/event/list');
+        console.log(user.status);
+        if (user.status === 'Pending Confirmation') {
+          res.redirect('verify-email');
+        } else {
+          req.session.user = user._id;
+          res.redirect('/event/list');
+        }
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }

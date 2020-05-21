@@ -4,7 +4,6 @@ const userRouter = new express.Router();
 const Dog = require('./../models/dog');
 const uploader = require('./../file-uploader');
 
-
 userRouter.get('/profile', (req, res, next) => {
   const userId = req.session.user;
   let userData;
