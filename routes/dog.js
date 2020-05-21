@@ -70,4 +70,19 @@ dogRouter.post('/:id/edit', uploader.single('photo'), (req, res, next) => {
     .catch((error) => next(error));
 });
 
+dogRouter.post('/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+
+  Dog.findByIdAndRemove(id)
+  .then(() => {
+    return User.findByIdAndUpdate(req.session.user, {
+      $pull: { dogs: id }
+    });
+  })
+  .then(() => {
+    res.redirect('/user/profile');
+  })
+  .catch((error) => next(error));
+});
+
 module.exports = dogRouter;

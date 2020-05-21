@@ -18,6 +18,15 @@ const userSchema = new mongoose.Schema(
     passwordHash: {
       type: String
     },
+    status: {
+      type: String,
+      enum: ['Pending Confirmation', 'Active'],
+      default: 'Pending Confirmation'
+    },
+    confirmationCode: {
+      type: String,
+      unique: true
+    },
     dogs: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Dog'
