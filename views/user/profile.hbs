@@ -24,9 +24,9 @@
             <h3>{{name}}</h3>
             <p>{{breed.breed}}</p>
           </div>
-          <a href="/dog/{{_id}}/edit">Edit</a>
+          <a href="/dog/{{_id}}/edit" class="btn-style">Edit</a>
           <form action="/dog/{{_id}}/delete" method="POST">
-            <button>Remove</button>
+            <button class="btn-style">Remove</button>
           </form>
         {{/each}}
       </div>
