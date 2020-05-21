@@ -1,16 +1,26 @@
 
 
 {{#with event}}
-{{> eventitem }}
-{{/with}}
-<p>Start : {{startDate}}</p>
 
-<h2>Location: </h2>
+{{> eventitem }}
+
+<div class="event-details">
+  <p>Created by: {{creator.name}} on {{createdDate}}</p>
+  <!--span>Latitude: {{location.coordinates.[1]}}</span>
+  <span>Longitude: {{location.coordinates.[0]}}</span--> 
+  <p>Last updated: {{updatedDate}}</p>
+  <h2>Location: </h2>
+  <p>Address: {{address}}</p>  
+</div>
+{{/with}}
+
 <div id="map-container"></div>
 
+{{#if event.owner}}
 <form action="/event/{{event._id}}/edit">
   <button>Edit or Remove this Event</button>
 </form>
+{{/if}}
 
 <script>
   function initMap() {

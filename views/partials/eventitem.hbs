@@ -4,16 +4,17 @@
     <div class="event-name-description">
      <h1>Event : {{title}}</h1>
      <p>{{description}}</p>
-     <p>Address: {{address}}</p>
-     <p>Start : {{date}}</p>
-     <p>End : {{endDate}}</p>
+     <!--p>Start : {{date}}</p-->
+     <p>Starting on: {{{formatDate date}}}</p>
+     <!--p>End : {{endDate}}</p-->
+     <p>Ending on: {{{formatDate endDate}}}</p>
     </div>
     <div class="event-details">
-      <p>Created by: {{creator.name}} on {{createdDate}}</p>
+      <!--p>Created by: {{creator.name}} on {{createdDate}}</p>
       <span>Latitude: {{location.coordinates.[1]}}</span>
       <span>Longitude: {{location.coordinates.[0]}}</span>
 
-      <p>Last updated: {{updatedDate}}</p>
+      <p>Last updated: {{updatedDate}}</p-->
     </div>
   </div>
 </div>

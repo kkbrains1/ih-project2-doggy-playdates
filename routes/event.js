@@ -3,14 +3,15 @@
 const express = require('express');
 const Event = require('./../models/event');
 const uploader = require('./../file-uploader');
+const routeGuard = require('./../middleware/route-guard');
 
 const eventRouter = new express.Router();
 
-eventRouter.get('/create', (req, res, next) => {
+eventRouter.get('/create', routeGuard, (req, res, next) => {
   res.render('event/create');
 });
 
-eventRouter.post('/create', uploader.single('photo'), (req, res, next) => {
+eventRouter.post('/create', routeGuard, uploader.single('photo'), (req, res, next) => {
   //console.log(req.body);
   const { title, description, date, endDate, address, latitude, longitude } = req.body;
   const creator = req.user._id;
@@ -48,7 +49,7 @@ eventRouter.get('/list', (req, res, next) => {
     });
 });
 
-eventRouter.get('/search', (req, res, next) => {
+eventRouter.get('/search', routeGuard, (req, res, next) => {
   console.log('searching', req.query);
   const { userLatitude, userLongitude, distance } = req.query;
   const kmToDegrees = (value) => value / (40000 / 360);
@@ -65,16 +66,14 @@ eventRouter.get('/search', (req, res, next) => {
     });
 });
 
-eventRouter.get('/:eventId/edit', (req, res, next) => {
+eventRouter.get('/:eventId/edit', routeGuard, (req, res, next) => {
   const eventId = req.params.eventId;
-  //const event;
-  //let formattedStartDate;
-  //let formattedEndDate;
   Event.findOne({
     _id: eventId,
     creator: req.user._id
   })
-    .then((event) => {
+    .then(event => {
+      console.log(event);
       let formattedStartDate = event.date;
       formattedStartDate = formattedStartDate.toISOString().replace('Z', '');
       let formattedEndDate = event.endDate;
@@ -86,7 +85,7 @@ eventRouter.get('/:eventId/edit', (req, res, next) => {
     });
 });
 
-eventRouter.post('/:eventId/edit', uploader.single('photo'), (req, res, next) => {
+eventRouter.post('/:eventId/edit', routeGuard, uploader.single('photo'), (req, res, next) => {
   const eventId = req.params.eventId;
   const { title, description, date, endDate, address, latitude, longitude } = req.body;
   let photo;
@@ -120,47 +119,42 @@ eventRouter.post('/:eventId/edit', uploader.single('photo'), (req, res, next) =>
         }
       );
     })
-    .then((result) => {
+    .then(result => {
       console.log('result', result);
       res.redirect(`/event/${eventId}`);
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
 
-eventRouter.post('/:eventId/delete', (req, res, next) => {
+eventRouter.post('/:eventId/delete', routeGuard, (req, res, next) => {
   const eventId = req.params.eventId;
   Event.findOneAndRemove({
     _id: eventId,
     creator: req.user._id
   })
-    .then((result) => {
+    .then(result => {
       console.log(result);
       res.redirect(`/event/list`);
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
 
-eventRouter.get('/:eventId', (req, res, next) => {
+eventRouter.get('/:eventId', routeGuard, (req, res, next) => {
   const eventId = req.params.eventId;
-  let event;
-  let startdate;
   Event.findById(eventId)
     .populate('event creator')
-    .then((doc) => {
-      event = doc.toObject();
-      startdate = event.date;
-      console.log('the event date is ', startdate);
-      return (startdate = startdate.toString().substr(0, 21));
+    .then(event => {
+      if (req.user && event.creator._id.toString() === req.user._id.toString()) {
+        event.owner = true;
+      }
+      //console.log('true?', event.owner, 'req id', req.user._id, 'creator', event.creator._id);
+      res.render('event/single', { event });
     })
-    .then((startDate) => {
-      console.log('the start date is', startDate);
-      res.render('event/single', { event, startDate });
-    })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
