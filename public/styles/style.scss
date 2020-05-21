@@ -133,18 +133,20 @@ textarea {
   img {
     width: 100vw;
     height: $minMain;
+    object-fit: cover;
   }
   .carousel-caption {
     bottom: 60px;
   }
   button {
     width: 400px;
-    background-color: $orange;
+    background-color: rgba($color: #fff, $alpha: 0.7);
     a:hover {
       color: white;
       text-decoration: none;
     }
     a {
+      font-size: 1.2em;
       color: black
     }
   }
@@ -209,7 +211,7 @@ textarea {
 
 .form-container {
   width: 100vw;
-  height: 100vh;
+  height: $minMain;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,26 +339,35 @@ textarea {
   }
 }
 
-.event-card {
-  width: 80vw;
+.event-card-list {
+  width: 500px;
   box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
   background-color: white;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-left: 0;
   margin-top: 5em;
   img {
     width: 500px;
-    height: 400px;
+    height: 250px;
+    object-fit: cover;
   }
   h1 {
     font-weight: 700;
+    margin: 0;
+  }
+  h4 {
+    margin-top: 0;
   }
   .event-name-description {
     display: flex;
     flex-direction: column;
     width: 600px;
     padding: 0 1em;
+    .dates {
+      margin-top: 50px;
+      line-height: normal;
+    }
   }
   .event-details {
     display: flex;
@@ -373,6 +384,8 @@ textarea {
 
 .event-list {
   width: 100vw;
+  padding-top: 20px;
+  
   .items {
     width: 600px;
     background-color: white;
@@ -404,8 +417,14 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 10px;
     a {
       color: blue;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
     }
   }
 }
