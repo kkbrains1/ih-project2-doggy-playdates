@@ -17,10 +17,17 @@
 
   <div class="second-section">
     <ul>
+      {{#if user}}
       {{#each events}}
         {{> eventitem }}
           <a href="/event/{{_id}}">More Details...</a>
       {{/each}}
+      {{else}}
+      {{#each (restrictList events 2)}}
+        {{> eventitem }}
+          <a href="/event/{{_id}}">More Details...</a>
+      {{/each}}
+      {{/if}}
     </ul>
   </div>
 </div>

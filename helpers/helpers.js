@@ -17,5 +17,9 @@ function formatDate(dateTime) {
   return date + ' at ' + time;
 }
 
-module.exports = {selected, checked, formatDate};
+function restrictList(array, limit) {
+  return array.slice(0, limit);
+}
+
+module.exports = {selected, checked, formatDate, restrictList};
 

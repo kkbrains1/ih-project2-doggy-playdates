@@ -1,9 +1,8 @@
 
 
 {{#with event}}
-{{> eventitem }}
 
-<p>Start : {{startDate}}</p>
+{{> eventitem }}
 
 <div class="event-details">
   <p>Created by: {{creator.name}} on {{createdDate}}</p>
@@ -11,10 +10,10 @@
   <span>Longitude: {{location.coordinates.[0]}}</span--> 
   <p>Last updated: {{updatedDate}}</p>
   <h2>Location: </h2>
-  <p>Address: {{address}}</p>
-{{/with}}
-  
+  <p>Address: {{address}}</p>  
 </div>
+{{/with}}
+
 <div id="map-container"></div>
 
 {{#if event.owner}}

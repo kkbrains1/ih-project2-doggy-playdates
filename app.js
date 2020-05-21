@@ -31,6 +31,7 @@ hbs.registerHelper('json', hbsJson);
 hbs.registerHelper('selected', helpers.selected);
 hbs.registerHelper('checked', helpers.checked);
 hbs.registerHelper('formatDate', helpers.formatDate);
+hbs.registerHelper('restrictList', helpers.restrictList);
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(
