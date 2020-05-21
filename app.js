@@ -17,6 +17,7 @@ const authenticationRouter = require('./routes/authentication');
 const eventRouter = require('./routes/event');
 const userRouter = require('./routes/user');
 const dogRouter = require('./routes/dog');
+const routeGuard = require('./middleware/route-guard');
 const hbs = require('hbs');
 const hbsJson = require('hbs-json');
 const helpers = require('./helpers/helpers');
@@ -69,8 +70,8 @@ app.use(bindUserToViewLocals);
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/event', eventRouter);
-app.use('/user', userRouter);
-app.use('/dog', dogRouter);
+app.use('/user', routeGuard, userRouter);
+app.use('/dog', routeGuard, dogRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
