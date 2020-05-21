@@ -144,23 +144,14 @@ eventRouter.post('/:eventId/delete', (req, res, next) => {
 
 eventRouter.get('/:eventId', (req, res, next) => {
   const eventId = req.params.eventId;
-  let event;
-  let startdate;
   Event.findById(eventId)
     .populate('event creator')
-    .then(doc => {
-      event = doc.toObject();
+    .then(event => {
       if (req.user && event.creator._id.toString() === req.user._id.toString()) {
         event.owner = true;
       }
       //console.log('true?', event.owner, 'req id', req.user._id, 'creator', event.creator._id);
-      startdate = event.date;
-      console.log('the event date is ', startdate);
-      return (startdate = startdate.toString().substr(0, 21));
-    } )
-    .then(startDate => {
-      console.log('the start date is', startDate);
-      res.render('event/single', { event, startDate });
+      res.render('event/single', { event });
     })
     .catch(error => {
       next(error);

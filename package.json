@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server",
-    "dev": "nodemon ./server",
+    "dev": "nodemon ./server -e js,hbs,scss",
     "dev:debug": "DEBUG=ih-project2-doggy-playdates* npm run dev",
     "lint": "eslint ."
   },

@@ -30,6 +30,7 @@ hbs.registerPartials(join(__dirname, '/views/partials'));
 hbs.registerHelper('json', hbsJson);
 hbs.registerHelper('selected', helpers.selected);
 hbs.registerHelper('checked', helpers.checked);
+hbs.registerHelper('formatDate', helpers.formatDate);
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(

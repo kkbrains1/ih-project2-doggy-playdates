@@ -4,8 +4,10 @@
     <div class="event-name-description">
      <h1>Event : {{title}}</h1>
      <p>{{description}}</p>
-     <p>Start : {{date}}</p>
-     <p>End : {{endDate}}</p>
+     <!--p>Start : {{date}}</p-->
+     <p>Starting on: {{{formatDate date}}}</p>
+     <!--p>End : {{endDate}}</p-->
+     <p>Ending on: {{{formatDate endDate}}}</p>
     </div>
     <div class="event-details">
       <!--p>Created by: {{creator.name}} on {{createdDate}}</p>
