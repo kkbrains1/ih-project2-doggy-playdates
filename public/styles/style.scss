@@ -837,3 +837,32 @@ input {
     }
   }
 }
+
+.form-default {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: $orange;
+    &:hover {
+      background-color: white;
+    }
+  }
+  select {
+    width: auto;
+    padding: 1em;
+    border: 1px solid $grey;
+    border-radius: 0;
+    font-family: $font-sans;
+    margin-bottom: 0.5rem;
+  }
+  textarea,
+  input {
+    width: auto;
+  }
+}

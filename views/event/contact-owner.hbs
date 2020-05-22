@@ -1,17 +1,19 @@
-<h1>Contact Event Organiser {{event.creator.name}}<a href="/#"></a></h1>
+<div class="form-default">
+  <h1>Contact Event Organiser {{event.creator.name}}<a href="/#"></a></h1>
 
-<form action="" method="POST">
-  <label for="subject">Email Subject</label>
-  <input required id="subject" type="text" name="subject" value="Doggy PlayDates Event: {{event.title}}" >
+  <form action="" method="POST">
+    <label for="subject">Email Subject</label>
+    <input required id="subject" type="text" name="subject" value="Doggy PlayDates Event: {{event.title}}" >
 
-  <label for="message">Your Message</label>
-  <textarea name="message" id="message">Hi fellow dog parent! How are you? ....</textarea>
+    <label for="message">Your Message</label>
+    <textarea name="message" id="message">Hi fellow dog parent! How are you? ....</textarea>
 
-  <p>Your email will be signed:</p>
-  <br>
-  <p>Kind regards,</p>
-  <p>{{user.name}} - you can reply to my message at <a href="mailto:{{user.email}}">{{user.email}}</a></p>
+    <p>Your email will be signed:</p>
+    <br>
+    <p>Kind regards,</p>
+    <p>{{user.name}} - you can reply to my message at <a href="mailto:{{user.email}}">{{user.email}}</a></p>
 
 
-  <button>Send Email</button>
-</form>
+    <button>Send Email</button>
+  </form>
+</div>
