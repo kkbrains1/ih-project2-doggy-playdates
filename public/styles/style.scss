@@ -763,3 +763,53 @@ input {
     }
   }
 }
+
+.list-users-container {
+  width: 100%;
+  min-height: $minMain;
+  display: flex;
+  flex-wrap: wrap;
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+  .user-card-list {
+    padding: 10px;
+    background-color: $grey;
+    margin: 10px;
+    width: 450px;
+    border-radius: 20px;
+
+    
+    .photo-text-user {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    ul {
+      display: flex;
+      li {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  .dog-data {
+    display: flex;
+    flex-direction: column;    
+    p {
+      margin: 10px 0;
+
+    }
+    li {
+      margin-right: 10px;
+      text-align: center;
+    }
+  }
+}

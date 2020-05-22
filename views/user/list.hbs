@@ -1,17 +1,35 @@
 
 
-<ul>
-  {{#each users}}
-    <li>
-      <h4><a href="/user/{{_id}}">Hi ! I'm {{name}}, my canine kids are: </a> </h4>
-      <ul>
-        {{#each dogs}}
-        <li>
-          {{name}}  
-        </li>
-        {{/each}}
-      </ul>
-      <img src={{photoUrl}} alt="user profile picture">
-    </li>
-  {{/each}}
-</ul>
+<div class="list-users-container">
+  <ul>
+    {{#each users}}
+      <li>
+        <div class="user-card-list">
+          <div class="photo-text-user">
+            {{#if photoUrl}}
+              <img src="{{photoUrl}}" alt="">
+            {{else}}
+              <img src="/images/profile-picture-default.jpeg" alt="">
+            {{/if}}
+            <h4><a href="/user/{{_id}}">Hi ! I'm {{name}}</a> </h4>
+          </div>
+          <div class="dog-data">
+            <p>my canine kids are: </p> 
+            <ul>
+              {{#each dogs}}
+              <li>
+                {{name}}  
+                {{#if photo}}
+                  <img src="{{photo}}" alt="">
+                {{else}}
+                  <img src="/images/logo_dpp.png" alt="">
+                {{/if}}         
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</div>
