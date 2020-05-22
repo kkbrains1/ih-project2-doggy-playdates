@@ -251,7 +251,9 @@ input {
     width: 300px; }
     .profile-container .form-picture img {
       width: 200px;
-      height: 200px; }
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px; }
     .profile-container .form-picture form {
       width: 200px; }
     .profile-container .form-picture input {
@@ -299,7 +301,8 @@ input {
     .profile-container .pet-card img {
       width: 200px;
       height: 150px;
-      border-radius: 2px; }
+      border-radius: 2px;
+      object-fit: cover; }
     .profile-container .pet-card h3 {
       margin: 0;
       font-weight: 700; }
@@ -467,7 +470,8 @@ input {
   .single-event-container .first-section {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-around; }
+    justify-content: space-around;
+    margin-bottom: 50px; }
     .single-event-container .first-section .dates {
       display: flex;
       justify-content: flex-start; }
@@ -475,25 +479,57 @@ input {
         margin-right: 20px; }
         .single-event-container .first-section .dates p i {
           margin-right: 5px; }
-  .single-event-container .comments-section {
+  .single-event-container .second-section {
     display: flex;
-    flex-direction: column;
-    padding: 30px;
+    flex-direction: row;
     background-color: rgba(191, 191, 191, 0.5); }
-    .single-event-container .comments-section textarea {
-      background-color: white; }
-    .single-event-container .comments-section button {
-      background-color: #ff7d2a; }
-      .single-event-container .comments-section button:hover {
+    .single-event-container .second-section .comments-section {
+      display: flex;
+      flex-direction: column;
+      padding: 0 30px;
+      margin-right: 100px;
+      margin-left: 40px; }
+      .single-event-container .second-section .comments-section textarea {
         background-color: white; }
-    .single-event-container .comments-section li {
-      list-style: none; }
-    .single-event-container .comments-section .single-comment {
-      padding: 10px; }
-      .single-event-container .comments-section .single-comment p {
-        background-color: rgba(255, 255, 255, 0.7);
-        margin: 0;
+      .single-event-container .second-section .comments-section button {
+        background-color: #ff7d2a; }
+        .single-event-container .second-section .comments-section button:hover {
+          background-color: white; }
+      .single-event-container .second-section .comments-section li {
+        list-style: none; }
+      .single-event-container .second-section .comments-section .single-comment {
         padding: 10px; }
+        .single-event-container .second-section .comments-section .single-comment p {
+          background-color: rgba(255, 255, 255, 0.7);
+          margin: 0;
+          padding: 10px;
+          width: 600px; }
+    .single-event-container .second-section .participants-section ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap; }
+      .single-event-container .second-section .participants-section ul li {
+        width: 150px;
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        line-height: normal; }
+    .single-event-container .second-section .participants-section img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-right: 5px; }
+  .single-event-container .map {
+    display: flex;
+    flex-direction: column; }
+    .single-event-container .map .join-event-btn {
+      display: flex;
+      align-self: center;
+      justify-self: center;
+      background-color: #ff7d2a; }
+    .single-event-container .map form {
+      height: 200px;
+      justify-content: center; }
 
 .edit-profile-container {
   display: flex;
@@ -518,5 +554,19 @@ input {
       flex-direction: column; }
       .edit-profile-container form .user-picture input {
         width: 400px; }
+
+.public-profile-container {
+  width: 100vw;
+  margin-top: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; }
+  .public-profile-container .user-profile {
+    display: flex;
+    flex-direction: row; }
+    .public-profile-container .user-profile img {
+      width: 300px;
+      height: 300px;
+      border-radius: 20px; }
 
 /*# sourceMappingURL=style.css.map */

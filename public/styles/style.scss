@@ -294,6 +294,8 @@ input {
     img {
       width: 200px;
       height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
     }
     form {
       width: 200px;
@@ -352,6 +354,7 @@ input {
       width: 200px;
       height: 150px;
       border-radius: 2px;
+      object-fit: cover;
     }
     h3 {
       margin: 0;
@@ -575,6 +578,7 @@ input {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
+    margin-bottom: 50px;
     .dates {
       display: flex;
       justify-content: flex-start;
@@ -586,32 +590,75 @@ input {
       }
     }
   }
-  .comments-section {
+  .second-section {
     display: flex;
-    flex-direction: column;
-    padding: 30px;
+    flex-direction: row;
     background-color: $grey;
-    textarea {
-      background-color: white;
-    }
-    button {
-      background-color: $orange;
-      &:hover {
+    .comments-section {
+      display: flex;
+      flex-direction: column;
+      padding: 0 30px;
+      margin-right: 100px;
+      margin-left: 40px;
+      //background-color: $grey;
+      textarea {
         background-color: white;
       }
-    }
-    li {
-      list-style: none;
-    }
-    .single-comment {
-      padding: 10px;
-      p {
-        background-color: rgba($color: #fff, $alpha: 0.7);
-        margin: 0;
+      button {
+        background-color: $orange;
+        &:hover {
+          background-color: white;
+        }
+      }
+      li {
+        list-style: none;
+      }
+      .single-comment {
         padding: 10px;
+        p {
+          background-color: rgba($color: #fff, $alpha: 0.7);
+          margin: 0;
+          padding: 10px;
+          width: 600px;
+        }
       }
     }
+    .participants-section  {
+        ul {
+          list-style: none;
+          display: flex;
+          flex-wrap: wrap;
+          li {
+            width: 150px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            line-height: normal;
+          }
+        }
+        img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          margin-right: 5px;
+        }
+    }
   }
+  .map {
+    display: flex;
+    flex-direction: column;
+    .join-event-btn {
+      display: flex;
+      align-self: center;
+      justify-self: center;
+      background-color: $orange;
+    }
+    form {
+      height: 200px;
+      justify-content: center;
+    }
+  }
+
 }
 
 .edit-profile-container {
@@ -641,6 +688,23 @@ input {
       input {
         width: 400px;
       }
+    }
+  }
+}
+
+.public-profile-container {
+  width: 100vw;
+  margin-top: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  .user-profile {
+    display: flex;
+    flex-direction: row;
+    img {
+      width: 300px;
+      height: 300px;
+      border-radius: 20px;
     }
   }
 }

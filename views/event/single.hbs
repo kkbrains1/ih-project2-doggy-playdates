@@ -1,25 +1,27 @@
 <div class="single-event-container">
   <div class="first-section">
     {{#with event}}
-    <div class="event-card-single">
-      {{> eventitem }}
+      <div class="event-card-single">
+        {{> eventitem }}
 
-      <p><i class="fas fa-map-marker-alt"></i> {{address}}</p> 
-      <small><em>Created by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
-      <!--span>Latitude: {{location.coordinates.[1]}}</span>
-      <span>Longitude: {{location.coordinates.[0]}}</span--> 
-      <small><em>Last updated on</em> {{{formatDate updatedDate}}}</small>
+        <p><i class="fas fa-map-marker-alt"></i> {{address}}</p> 
+        <small><em>Created by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
+        <!--span>Latitude: {{location.coordinates.[1]}}</span>
+        <span>Longitude: {{location.coordinates.[0]}}</span--> 
+        <small><em>Last updated on</em> {{{formatDate updatedDate}}}</small>
 
-      {{#if owner}}
-      <form action="/event/{{_id}}/edit">
-        <button class="btn-orange">Edit or Remove this Event</button>
-      </form>
-      {{/if}}
+        {{#if owner}}
+        <form action="/event/{{_id}}/edit">
+          <button class="btn-orange">Edit or Remove this Event</button>
+        </form>
+        {{else}}
+        <form action="/event/{{_id}}/join" method="POST">
+          <button id="join-event" class="btn-orange">Join this Event !</button>
+        </form>
+        {{/if}}
 
-    </div>
-
-
-      {{/with}}
+      </div>
+    {{/with}}
 
     <div class="map"> 
       <div id="map-container"></div>
@@ -37,35 +39,45 @@
   </form>
 {{/unless}}
 
-  <div class="comments-section">
-    <h2>Comments: </h2>
 
-    <ul>
-      {{#each comments}}
-      <div class="single-comment">
-        <li>
-          <p>{{description}}</p>
-          <small><em>Commented by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
-        </li>
+  <div class="second-section">
+      <div class="comments-section">
+        <h2>Comments: </h2>
+
+        <ul>
+          {{#each comments}}
+          <div class="single-comment">
+            <li>
+              <p>{{description}}</p>
+              <small><em>Commented by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
+            </li>
+          </div>
+          {{/each}}
+        </ul>
+
+        <form action="/event/{{event._id}}/comment" method="POST">
+          <label for="comment-input">Post a Comment</label>
+          <textarea required id="comment-input" name="description">Doggo ipsum pupperino</textarea>
+          <button>Submit Comment</button>
+        </form>
       </div>
-      {{/each}}
-    </ul>
 
-    <form action="/event/{{event._id}}/comment" method="POST">
-      <label for="comment-input">Post a Comment</label>
-      <textarea required id="comment-input" name="description">Doggo ipsum pupperino</textarea>
-      <button>Submit Comment</button>
-    </form>
+    <div class="participants-section">
+      <h2>These 🐶 Parents have already confirmed: </h2>
+      <ul>
+        {{#each event.participants}}
+          <li>
+            {{#if photoUrl}}
+              <img src="{{photoUrl}}">
+            {{else}}
+              <img src="/images/user-silhouette.png" alt="">
+            {{/if}}
+            <a href="/user/{{_id}}">{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
   </div>
-
-  <h2>These 🐶 Parents have already confirmed: </h2>
-<ul>
-  {{#each event.participants}}
-    <li>
-      <a href="/user/{{_id}}">{{name}}</a
-    </li>
-  {{/each}}
-</ul>
 
 </div>
 <script>
