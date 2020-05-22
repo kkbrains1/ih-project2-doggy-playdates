@@ -54,9 +54,9 @@ i {
     width: 100%;
     align-items: center;
     padding: 0 80px 0 40px;
-    img{
+    img {
       width: 60px;
-      height: 60px; 
+      height: 60px;
     }
     a,
     button {
@@ -163,7 +163,7 @@ input {
     }
     a {
       font-size: 1.2em;
-      color: black
+      color: black;
     }
   }
 }
@@ -375,7 +375,7 @@ input {
     i {
       color: white;
     }
-    
+
     &.add {
       display: flex;
       align-items: center;
@@ -393,7 +393,7 @@ input {
           justify-content: center;
           align-items: center;
           &:hover {
-            color: white;
+            color: grey;
             text-decoration: none;
           }
         }
@@ -414,8 +414,6 @@ input {
     width: 90vw;
   }
 }
-
-
 
 .event-card-list {
   width: 350px;
@@ -469,9 +467,9 @@ input {
 }
 
 .event-list {
-  width: 100vw;
+  width: 100%;
   padding-top: 20px;
-  
+
   .items {
     width: 600px;
     background-color: white;
@@ -499,12 +497,14 @@ input {
   }
 
   .second-section {
-    background-color: $orange;
+    background-color: $grey;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
     a {
-      color: blue;
+      color: $orange;
+      align-self: flex-end;
     }
     ul {
       display: flex;
@@ -515,7 +515,7 @@ input {
 }
 
 .create-dog-container {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -524,6 +524,7 @@ input {
     width: 60vw;
     .dog-size {
       display: flex;
+      justify-content: space-around;
       div {
         min-width: 100px;
         display: flex;
@@ -532,7 +533,7 @@ input {
       }
     }
     select {
-      width: 600px;
+      width: auto;
       padding: 1em;
       border: 1px solid $grey;
       border-radius: 0;
@@ -541,6 +542,16 @@ input {
     }
     input {
       width: auto;
+    }
+
+    button {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      background-color: $orange;
+      &:hover {
+        background-color: white;
+      }
     }
   }
 }
@@ -555,6 +566,22 @@ input {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
+    background-color: $orange;
+    &:hover {
+      background-color: white;
+    }
+  }
+  select {
+    width: auto;
+    padding: 1em;
+    border: 1px solid $grey;
+    border-radius: 0;
+    font-family: $font-sans;
+    margin-bottom: 0.5rem;
+  }
+  textarea,
+  input {
+    width: auto;
   }
 }
 
@@ -626,25 +653,25 @@ input {
         }
       }
     }
-    .participants-section  {
-        ul {
-          list-style: none;
+    .participants-section {
+      ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          width: 150px;
           display: flex;
-          flex-wrap: wrap;
-          li {
-            width: 150px;
-            display: flex;
-            align-items: center;
-            margin-right: 10px;
-            line-height: normal;
-          }
+          align-items: center;
+          margin-right: 10px;
+          line-height: normal;
         }
-        img {
-          width: 80px;
-          height: 80px;
-          object-fit: cover;
-          margin-right: 5px;
-        }
+      }
+      img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        margin-right: 5px;
+      }
     }
   }
   .map {
@@ -661,7 +688,6 @@ input {
       justify-content: center;
     }
   }
-
 }
 
 .edit-profile-container {
@@ -737,11 +763,11 @@ input {
         margin-right: 20px;
         .dog-img-text {
           background-color: $grey;
-          padding:5px;
+          padding: 5px;
           border-radius: 10px;
           display: flex;
           align-items: center;
-          .dog-text{
+          .dog-text {
             display: flex;
             flex-direction: column;
           }
@@ -787,7 +813,6 @@ input {
     width: 450px;
     border-radius: 20px;
 
-    
     .photo-text-user {
       display: flex;
       flex-direction: column-reverse;
@@ -802,10 +827,9 @@ input {
   }
   .dog-data {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     p {
       margin: 10px 0;
-
     }
     li {
       margin-right: 10px;
