@@ -83,7 +83,7 @@ eventRouter.post('/:eventId/comment', (req, res, next) => {
     });
 });
 
-eventRouter.post('/join/:eventId', (req, res, next) => {
+eventRouter.post('/:eventId/join/', (req, res, next) => {
   const eventId = req.params.eventId;
   const userId = req.user._id;
   Event.findById({ _id: eventId })

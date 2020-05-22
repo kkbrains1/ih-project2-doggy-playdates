@@ -70,6 +70,17 @@ userRouter.post('/edit', uploader.single('photo'), (req, res, next) => {
     });
 });
 
+userRouter.get('/list', (req, res, next) => {
+  User.find()
+  .populate('dogs')
+  .then(users => {
+    res.render('user/list', {users});
+  })
+  .catch(error => {
+    next(error);
+  });
+});
+
 userRouter.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
   let user;
