@@ -16,6 +16,20 @@
 
 <div id="map-container"></div>
 
+<form action="/event/join/{{event._id}}" method="POST">
+  <label for="join-event">Click here to join</label>
+  <button id="join-event">Join this Event !</button>
+</form>
+
+<h2>These 🐶 Parents have already confirmed: </h2>
+<ul>
+  {{#each event.participants}}
+    <li>
+      <a href="/user/{{_id}}">{{name}}</a
+    </li>
+  {{/each}}
+</ul>
+
 {{#if event.owner}}
 <form action="/event/{{event._id}}/edit">
   <button>Edit or Remove this Event</button>

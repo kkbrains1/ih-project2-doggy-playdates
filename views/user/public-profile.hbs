@@ -1,0 +1,12 @@
+{{#with user}}
+  <h1>Hi! I'm {{name}} <img src="{{photoUrl}}" alt="profile picture" width=10></h1> 
+  <h2>And I am the proud dog parent of...</h2>
+  <ul>
+    {{#each dogs}}
+      <li>
+        <p>WOOF! My name is {{name}}, I am a {{size}} {{breed.breed}} and I'm super {{personality}}</p>
+        <img src={{photo}} alt="canine superstar">   
+      </li>
+    {{/each}}
+  </ul>
+{{/with}}
