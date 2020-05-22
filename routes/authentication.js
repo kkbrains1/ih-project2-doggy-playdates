@@ -46,7 +46,7 @@ router.post('/sign-up', (req, res, next) => {
     .then((users) => {
       if (users && users.length) {
         return Promise.reject(
-          new Error("There's already an user with this email")
+          new Error("There's already a user with this email")
         );
       }
       return;

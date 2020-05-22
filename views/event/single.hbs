@@ -26,7 +26,10 @@
     </div>
   </div>
 
-
+<form action="/event/{{event._id}}/join" method="POST">
+  <label for="join-event">Click here to join</label>
+  <button id="join-event">Join this Event !</button>
+</form>
 
   <div class="comments-section">
     <h2>Comments: </h2>
@@ -48,6 +51,16 @@
       <button>Submit Comment</button>
     </form>
   </div>
+
+  <h2>These 🐶 Parents have already confirmed: </h2>
+<ul>
+  {{#each event.participants}}
+    <li>
+      <a href="/user/{{_id}}">{{name}}</a
+    </li>
+  {{/each}}
+</ul>
+
 </div>
 <script>
   function initMap() {

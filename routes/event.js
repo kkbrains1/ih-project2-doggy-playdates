@@ -29,11 +29,11 @@ eventRouter.post('/create', routeGuard, uploader.single('photo'), (req, res, nex
     },
     creator
   })
-    .then((event) => {
+    .then(event => {
       const eventId = event._id;
       res.redirect(`/event/${eventId}`);
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
@@ -41,11 +41,11 @@ eventRouter.post('/create', routeGuard, uploader.single('photo'), (req, res, nex
 eventRouter.get('/list', (req, res, next) => {
   Event.find()
     .populate('event creator')
-    .then((events) => {
+    .then(events => {
       //console.log(events)
       res.render('event/list', { events });
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
@@ -53,16 +53,16 @@ eventRouter.get('/list', (req, res, next) => {
 eventRouter.get('/search', routeGuard, (req, res, next) => {
   //console.log('searching', req.query);
   const { userLatitude, userLongitude, distance } = req.query;
-  const kmToDegrees = (value) => value / (40000 / 360);
+  const kmToDegrees = value => value / (40000 / 360);
 
   Event.find()
     .where('location')
     .within()
     .circle({ center: [userLongitude, userLatitude], radius: kmToDegrees(distance) })
-    .then((events) => {
+    .then(events => {
       res.render('event/list', { events });
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
@@ -76,6 +76,27 @@ eventRouter.post('/:eventId/comment', (req, res, next) => {
   })
     .then(comment => {
       //console.log('comment is saved ', comment);
+      res.redirect(`/event/${eventId}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+eventRouter.post('/:eventId/join/', (req, res, next) => {
+  const eventId = req.params.eventId;
+  const userId = req.user._id;
+  Event.findById({ _id: eventId })
+    .then(event => {
+      //console.log('user', userId, 'joining', event, event.participants);
+      if (event.participants.includes(userId)) {
+        return Promise.reject(new Error('You have already joined this event'));
+      } else {
+        return Event.findByIdAndUpdate({ _id: eventId }, { $push: { participants: userId } });
+      }
+    })
+    .then(() => {
+      //console.log('participants updated', result);
       res.redirect(`/event/${eventId}`);
     })
     .catch(error => {
@@ -97,7 +118,7 @@ eventRouter.get('/:eventId/edit', routeGuard, (req, res, next) => {
       formattedEndDate = formattedEndDate.toISOString().replace('Z', '');
       res.render('event/edit', { event, formattedStartDate, formattedEndDate });
     })
-    .catch((error) => {
+    .catch(error => {
       next(error);
     });
 });
@@ -112,7 +133,7 @@ eventRouter.post('/:eventId/edit', routeGuard, uploader.single('photo'), (req, r
     _id: eventId,
     creator: req.user._id
   })
-    .then((doc) => {
+    .then(doc => {
       event = doc.toObject();
       if (req.file) {
         photo = req.file.url;
@@ -165,13 +186,14 @@ eventRouter.get('/:eventId', routeGuard, (req, res, next) => {
   let event;
   Event.findById(eventId)
     .populate('event creator')
+    .populate('event participants')
     .then(doc => {
       event = doc.toObject();
       if (req.user && event.creator._id.toString() === req.user._id.toString()) {
         event.owner = true;
       }
       //console.log('true?', event.owner, 'req id', req.user._id, 'creator', event.creator._id);
-      return Comment.find({event: eventId}).populate('creator');
+      return Comment.find({ event: eventId }).populate('creator');
     })
     .then(comments => {
       //console.log(comments);

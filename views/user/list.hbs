@@ -1,0 +1,17 @@
+
+
+<ul>
+  {{#each users}}
+    <li>
+      <h4><a href="/user/{{_id}}">Hi ! I'm {{name}}, my canine kids are: </a> </h4>
+      <ul>
+        {{#each dogs}}
+        <li>
+          {{name}}  
+        </li>
+        {{/each}}
+      </ul>
+      <img src={{photoUrl}} alt="user profile picture">
+    </li>
+  {{/each}}
+</ul>
