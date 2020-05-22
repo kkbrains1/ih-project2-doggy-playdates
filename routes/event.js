@@ -128,6 +128,7 @@ eventRouter.get('/:eventId/contact-owner', (req, res, next) => {
 eventRouter.post('/:eventId/contact-owner', (req, res, next) => {
   const eventId = req.params.eventId;
   const userName = req.user.name;
+  const userEmail = req.user.email;
   const {subject, message } = req.body;
   let eventTitle;
   let eventOwnerEmail;
@@ -143,7 +144,8 @@ eventRouter.post('/:eventId/contact-owner', (req, res, next) => {
         from: `Doggy Playdate Parent ${userName} <${process.env.NODEMAILER_EMAIL}`,
         to: eventOwnerEmail,
         subject: subject,
-        text : `Dear ${eventOwnerName} You have received the following message from Doggy Playdate Parent ${userName} regarding your event ${eventTitle}: ${message}. Kind regards, ${userName}`
+        html : `Dear ${eventOwnerName} You have received the following message from Doggy Playdate Parent ${userName} regarding your event ${eventTitle}: ${message}. Kind regards, ${userName} - you can reply to my message at <a href=mailto:${userEmail}>${userEmail}</a>`
+        
       });
     })
     .then(result => {
