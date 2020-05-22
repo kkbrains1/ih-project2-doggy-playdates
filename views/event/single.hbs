@@ -16,10 +16,13 @@
 
 <div id="map-container"></div>
 
+{{#unless event.owner}}
 <form action="/event/{{event._id}}/join" method="POST">
   <label for="join-event">Click here to join</label>
   <button id="join-event">Join this Event !</button>
 </form>
+
+{{/unless}}
 
 <h2>These 🐶 Parents have already confirmed: </h2>
 <ul>
