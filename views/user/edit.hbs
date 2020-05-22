@@ -1,15 +1,19 @@
-<h1>Edit Profile</h1>
+<div class="edit-profile-container">
+  <h1>Edit Profile</h1>
 
-<form action="" method="POST" enctype="multipart/form-data">
-  <img src="{{user.photoUrl}}" alt="" height="400px">
-  <label for="picture-input">Change Picture</label>
-  <input type="file" id="picture-input" name="photo">
+  <form action="" method="POST" enctype="multipart/form-data">
+    <div class="user-picture">
+      <img src="{{user.photoUrl}}" alt="" height="400px">
+      <label for="picture-input">Change Picture</label>
+      <input type="file" id="picture-input" name="photo">
+    </div>
+    <div class="user-data">
+      <label for="input-name">Name</label>
+      <input type="text" id="input-name" name="name" placeholder="Your Name" value="{{user.name}}"/>
 
-  <label for="input-name">Name</label>
-  <input type="text" id="input-name" name="name" placeholder="Your Name" value="{{user.name}}"/>
-
-  <label for="input-email">Email</label>
-  <input type="email" id="input-email" name="email" placeholder="Your Email" value="{{user.email}}"/>
-
-  <button>Save</button> 
+      <label for="input-email">Email</label>
+      <input type="email" id="input-email" name="email" placeholder="Your Email" value="{{user.email}}"/>
+      <button>Save</button> 
+    </div>
 </form>
+</div>

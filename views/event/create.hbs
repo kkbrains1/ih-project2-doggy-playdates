@@ -1,37 +1,37 @@
+<div class="create-event">
+  <h1>Create a New Event</h1>
 
-<h1>Create a New Event</h1>
+  <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <label for="create-event">Event Title</label>
+    <input required id="create-event" type="text" name="title" placeholder="It’s a Doggy Dog World">
 
-<form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
-  <label for="create-event">Event Title</label>
-  <input required id="create-event" type="text" name="title" placeholder="It’s a Doggy Dog World">
+    <label for="event-description">Event Description</label>
+    <textarea required id="event-description" name="description" placeholder="Join fellow dog-lovers to strut your mutts down the Lisbon promenade for the parade and join in the fun of the dog costume contest"></textarea>
 
-  <label for="event-description">Event Description</label>
-  <textarea required id="event-description" name="description" placeholder="Join fellow dog-lovers to strut your mutts down the Lisbon promenade for the parade and join in the fun of the dog costume contest"></textarea>
+    <label for="event-start">Enter the Start Date and Time of your Event</label>
+    <input required id="event-start" type="datetime-local" name="date" placeholder="Event Start Date and Time">
 
-  <label for="event-start">Enter the Start Date and Time of your Event</label>
-  <input required id="event-start" type="datetime-local" name="date" placeholder="Event Start Date and Time">
+    <label for="event-end">Enter the End Date and Time of your Event</label>
+    <input required id="event-end" type="datetime-local" name="endDate" placeholder="Event End Date and Time">
 
-  <label for="event-end">Enter the End Date and Time of your Event</label>
-  <input required id="event-end" type="datetime-local" name="endDate" placeholder="Event End Date and Time">
+    <label for="photo-input">Add a Photo</label>
+    <input id="photo-input" type="file" name="photo" >
 
-  <label for="photo-input">Add a Photo</label>
-  <input id="photo-input" type="file" name="photo" >
+    <label for="event-address">Enter the Address of your Event</label>
+    <input required id="event-address" type="text" name="address" placeholder="Avenida Ribeira das Naus, Lisboa">
 
-  <label for="event-address">Enter the Address of your Event</label>
-  <input required id="event-address" type="text" name="address" placeholder="Avenida Ribeira das Naus, Lisboa">
+    <label for="map-container">Mark your spot on the map</label>
+    <div id="map-container" ></div>
 
-  <label for="map-container">Mark your spot on the map</label>
-  <div id="map-container" ></div>
+    <!--label for="select-latitude">Latitude</label-->
+    <input required hidden id="select-latitude" type="text" name="latitude" placeholder="Latitude">
 
-  <!--label for="select-latitude">Latitude</label-->
-  <input required hidden id="select-latitude" type="text" name="latitude" placeholder="Latitude">
+    <!--label for="select-longitude">Longitude</label-->
+    <input required hidden id="select-longitude" type="text" name="longitude" placeholder="Longitude">
 
-  <!--label for="select-longitude">Longitude</label-->
-  <input required hidden id="select-longitude" type="text" name="longitude" placeholder="Longitude">
-
-  <button>Create Event</button>
-</form>
-
+    <button>Create Event</button>
+  </form>
+</div>
 <script>
 
  

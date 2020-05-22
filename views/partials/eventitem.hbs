@@ -3,12 +3,14 @@
   <div class="column-container">
     <div class="event-name-description">
      <h5>Event : {{title}}</h5>
-     <p>{{description}}</p>
+     <div class="description-text">
+      <p>{{description}}</p>
+    </div>
      <!--p>Start : {{date}}</p-->
       <div class="dates">
-        <p>Starting on: {{{formatDate date}}}</p>
+        <p><i class="far fa-calendar-alt"></i>{{{formatDate date}}}</p>
         <!--p>End : {{endDate}}</p-->
-        <p>Ending on: {{{formatDate endDate}}}</p>
+        <p><i class="far fa-calendar-alt"></i>{{{formatDate endDate}}}</p>
       </div>
     </div>
     

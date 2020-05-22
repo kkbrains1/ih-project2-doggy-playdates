@@ -7,9 +7,7 @@
         <input type="file" id="picture-input" name="photo">
         <button>Save</button> 
       </form>
-      <form action="" method="POST">
-        <a href="/dog/create"> Add new pet </a>
-      </form>
+
       <form action="" method="POST">
         <a href="/user/edit"> Edit profile </a>
       </form>
@@ -23,12 +21,20 @@
             <img src="{{photo}}" alt="">
             <h3>{{name}}</h3>
             <p>{{breed.breed}}</p>
+            <div class="edit-delete-btns">
+              <a href="/dog/{{_id}}/edit"><i class="far fa-edit"></i></a>
+              <form action="/dog/{{_id}}/delete" method="POST">
+                <button class="btn-style"><i class="far fa-trash-alt"></i></button>
+              </form>
+            </div>
           </div>
-          <a href="/dog/{{_id}}/edit" class="btn-style">Edit</a>
-          <form action="/dog/{{_id}}/delete" method="POST">
-            <button class="btn-style">Remove</button>
-          </form>
         {{/each}}
+        <div class="pet-card add">  
+          <form action="" method="POST">
+             
+            <a href="/dog/create"><i class="fas fa-plus"></i> Add new pet </a>
+          </form>
+        </div>
       </div>
     </div>
   </div>  
