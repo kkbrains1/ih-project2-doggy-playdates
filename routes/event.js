@@ -5,6 +5,15 @@ const Event = require('./../models/event');
 const Comment = require('./../models/comment');
 const uploader = require('./../file-uploader');
 const routeGuard = require('./../middleware/route-guard');
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.NODEMAILER_EMAIL,
+    pass: process.env.NODEMAILER_PASSWORD
+  }
+});
 
 const eventRouter = new express.Router();
 
@@ -99,6 +108,50 @@ eventRouter.post('/:eventId/join/', routeGuard, (req, res, next) => {
       //console.log('participants updated', result);
       res.redirect(`/event/${eventId}`);
     })
+    .catch(error => {
+      next(error);
+    });
+});
+
+eventRouter.get('/:eventId/contact-owner', (req, res, next) => {
+  Event.findById({_id: req.params.eventId})
+    .populate('creator')
+    .then(event => {
+      //console.log(event);
+      res.render('event/contact-owner', {event});
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+eventRouter.post('/:eventId/contact-owner', (req, res, next) => {
+  const eventId = req.params.eventId;
+  const userName = req.user.name;
+  const userEmail = req.user.email;
+  const {subject, message } = req.body;
+  let eventTitle;
+  let eventOwnerEmail;
+  let eventOwnerName;
+  Event.findById({ _id: eventId })
+    .populate('creator')
+    .then(event => {     
+      eventTitle = event.title;
+      eventOwnerEmail = event.creator.email;
+      eventOwnerName = event.creator.name;
+      transporter
+      .sendMail({
+        from: `Doggy Playdate Parent ${userName} <${process.env.NODEMAILER_EMAIL}`,
+        to: eventOwnerEmail,
+        subject: subject,
+        html : `Dear ${eventOwnerName} You have received the following message from Doggy Playdate Parent ${userName} regarding your event ${eventTitle}: ${message}. Kind regards, ${userName} - you can reply to my message at <a href=mailto:${userEmail}>${userEmail}</a>`
+        
+      });
+    })
+    .then(result => {
+      console.log(result)
+      res.redirect(`/event/${eventId}`);
+    }) 
     .catch(error => {
       next(error);
     });

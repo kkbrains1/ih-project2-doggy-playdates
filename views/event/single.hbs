@@ -18,6 +18,9 @@
         <form action="/event/{{_id}}/join" method="POST">
           <button id="join-event" class="btn-orange">Join this Event !</button>
         </form>
+        <form action="/event/{{_id}}/contact-owner">
+          <button id="contact-owner" class="btn-orange">Send private message to organiser</button>
+        </form>
         {{/if}}
 
       </div>
@@ -27,6 +30,8 @@
       <div id="map-container"></div>
     </div>
   </div>
+
+
 
   <div class="second-section">
       <div class="comments-section">
