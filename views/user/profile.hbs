@@ -1,7 +1,11 @@
 <div class="profile-container">
   <div class="row-container">
     <div class="form-picture">
-      <img src="{{user.photoUrl}}" alt="">
+      {{#if user.photoUrl}}
+        <img src="{{user.photoUrl}}" alt="">
+      {{else}}
+        <img src="/images/user-silhouette.png" alt="">
+      {{/if}}
       <form action="/user/avatar-upload" method="POST" enctype="multipart/form-data">
         <label for="picture-input">Picture</label>
         <input type="file" id="picture-input" name="photo">
@@ -17,8 +21,12 @@
       <p>Email: {{user.email}}</p>
       <div class="pets-section">
         {{#each user.dogs}}
-          <div class="pet-card">         
-            <img src="{{photo}}" alt="">
+          <div class="pet-card">
+            {{#if photo}}
+              <img src="{{photo}}" alt="">
+            {{else}}
+              <img src="/images/logo_dpp.png" alt="">
+            {{/if}}         
             <h3>{{name}}</h3>
             <p>{{breed.breed}}</p>
             <div class="edit-delete-btns">
