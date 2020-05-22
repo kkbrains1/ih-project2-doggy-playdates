@@ -53,7 +53,7 @@ i {
     display: flex;
     width: 100%;
     align-items: center;
-    padding: 0 20px 0 40px;
+    padding: 0 80px 0 40px;
     img{
       width: 60px;
       height: 60px; 
@@ -379,6 +379,8 @@ input {
     &.add {
       display: flex;
       align-items: center;
+      background-color: white;
+      border: solid 1px $orange;
       form {
         width: 200px;
         height: 250px;
@@ -399,6 +401,7 @@ input {
       i {
         font-size: 3em;
         margin-top: 10px;
+        color: $orange;
       }
     }
   }
@@ -693,18 +696,70 @@ input {
 }
 
 .public-profile-container {
-  width: 100vw;
-  margin-top: 20px;
+  width: 100%;
+  min-height: $minMain;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
   .user-profile {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: start;
+    padding: 20px 10px 0 10px;
+    background-color: $grey;
+    width: 350px;
+    line-height: normal;
+    text-align: center;
     img {
-      width: 300px;
-      height: 300px;
-      border-radius: 20px;
+      width: 150px;
+      height: 150px;
+      border-radius: 200px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    h3 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .dogs-section {
+    padding-left: 50px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      .dog-profile {
+        max-width: 500px;
+        margin-right: 20px;
+        .dog-img-text {
+          background-color: $grey;
+          padding:5px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          .dog-text{
+            display: flex;
+            flex-direction: column;
+          }
+        }
+        img {
+          width: 300px;
+          height: 300px;
+          padding: 10px;
+          object-fit: cover;
+        }
+        li {
+          list-style: none;
+        }
+        h3 {
+          font-weight: 600;
+          padding: 10px;
+        }
+      }
     }
   }
 }

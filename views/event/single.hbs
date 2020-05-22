@@ -18,6 +18,9 @@
         <form action="/event/{{_id}}/join" method="POST">
           <button id="join-event" class="btn-orange">Join this Event !</button>
         </form>
+        <form action="/event/{{_id}}/contact-owner">
+          <button id="contact-owner" class="btn-orange">Send private message to organiser</button>
+        </form>
         {{/if}}
 
       </div>
@@ -28,16 +31,6 @@
     </div>
   </div>
 
-{{#unless event.owner}}
-  <form action="/event/{{event._id}}/join" method="POST">
-    <label for="join-event">Click here to join</label>
-    <button id="join-event">Join this Event !</button>
-  </form>
-  <form action="/event/{{event._id}}/contact-owner">
-    <label for="contact-owner">Click here to contact the event organiser privately by email</label>
-    <button id="contact-owner">Send private message to organiser</button>
-  </form>
-{{/unless}}
 
 
   <div class="second-section">
@@ -70,7 +63,7 @@
             {{#if photoUrl}}
               <img src="{{photoUrl}}">
             {{else}}
-              <img src="/images/user-silhouette.png" alt="">
+              <img src="/images/profile-picture-default.jpeg" alt="">
             {{/if}}
             <a href="/user/{{_id}}">{{name}}</a>
           </li>
