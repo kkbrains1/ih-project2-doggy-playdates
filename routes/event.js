@@ -67,7 +67,7 @@ eventRouter.get('/search', routeGuard, (req, res, next) => {
     });
 });
 
-eventRouter.post('/:eventId/comment', (req, res, next) => {
+eventRouter.post('/:eventId/comment', routeGuard, (req, res, next) => {
   const eventId = req.params.eventId;
   Comment.create({
     description: req.body.description,
@@ -83,7 +83,7 @@ eventRouter.post('/:eventId/comment', (req, res, next) => {
     });
 });
 
-eventRouter.post('/:eventId/join/', (req, res, next) => {
+eventRouter.post('/:eventId/join/', routeGuard, (req, res, next) => {
   const eventId = req.params.eventId;
   const userId = req.user._id;
   Event.findById({ _id: eventId })
