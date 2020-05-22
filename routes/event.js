@@ -88,17 +88,15 @@ eventRouter.post('/:eventId/join/', (req, res, next) => {
   const userId = req.user._id;
   Event.findById({ _id: eventId })
     .then(event => {
-      console.log('user', userId, 'joining', event, event.participants);
+      //console.log('user', userId, 'joining', event, event.participants);
       if (event.participants.includes(userId)) {
         return Promise.reject(new Error('You have already joined this event'));
       } else {
-        Event.findByIdAndUpdate(
-          { _id: eventId },
-          { $push: { participants: userId } },
-          { new: true , safe: true, upsert: true}
-        );
+        return Event.findByIdAndUpdate({ _id: eventId }, { $push: { participants: userId } });
       }
-      console.log('participants updated', event);
+    })
+    .then(() => {
+      //console.log('participants updated', result);
       res.redirect(`/event/${eventId}`);
     })
     .catch(error => {
