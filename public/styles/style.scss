@@ -697,23 +697,27 @@ input {
 
 .public-profile-container {
   width: 100%;
-  height: $minMain;
+  min-height: $minMain;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   .user-profile {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: start;
-    padding: 20px 10px 0 30px;
+    padding: 20px 10px 0 10px;
     background-color: $grey;
+    width: 350px;
+    line-height: normal;
+    text-align: center;
     img {
       width: 150px;
       height: 150px;
       border-radius: 200px;
       margin-right: 20px;
+      margin-bottom: 20px;
     }
     h3 {
       padding: 0;
@@ -725,35 +729,36 @@ input {
     padding-top: 20px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    max-width: 800px;
-
-
-    .dog-profile {
-      max-width: 500px;
-      .dog-img-text {
-        background-color: $grey;
-        padding:5px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        .dog-text{
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      .dog-profile {
+        max-width: 500px;
+        margin-right: 20px;
+        .dog-img-text {
+          background-color: $grey;
+          padding:5px;
+          border-radius: 10px;
           display: flex;
-          flex-direction: column;
+          align-items: center;
+          .dog-text{
+            display: flex;
+            flex-direction: column;
+          }
         }
-      }
-      img {
-        width: 300px;
-        height: 300px;
-        padding: 10px;
-        object-fit: cover;
-      }
-      li {
-        list-style: none;
-      }
-      h3 {
-        font-weight: 600;
-        padding: 10px;
+        img {
+          width: 300px;
+          height: 300px;
+          padding: 10px;
+          object-fit: cover;
+        }
+        li {
+          list-style: none;
+        }
+        h3 {
+          font-weight: 600;
+          padding: 10px;
+        }
       }
     }
   }
