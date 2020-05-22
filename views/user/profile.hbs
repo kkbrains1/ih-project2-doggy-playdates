@@ -4,7 +4,7 @@
       {{#if user.photoUrl}}
         <img src="{{user.photoUrl}}" alt="">
       {{else}}
-        <img src="/images/user-silhouette.png" alt="">
+        <img src="/images/profile-picture-default.jpeg" alt="">
       {{/if}}
       <form action="/user/avatar-upload" method="POST" enctype="multipart/form-data">
         <label for="picture-input">Picture</label>

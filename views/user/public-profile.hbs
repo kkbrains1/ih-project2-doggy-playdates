@@ -1,17 +1,27 @@
 <div class="public-profile-container">
   {{#with user}}
   <div class="user-profile">
-    <h1>Hi! I'm {{name}} </h1>
+    <h3>Hi! I'm {{name}} </h3>
     <img src="{{photoUrl}}" alt="profile picture" width=10> 
   </div>
-    <h2>And I am the proud dog parent of...</h2>
-    <ul>
-      {{#each dogs}}
-        <li>
-          <p>WOOF! My name is {{name}}, I am a {{size}} {{breed.breed}} and I'm super {{personality}}</p>
-          <img src={{photo}} alt="canine superstar">   
-        </li>
-      {{/each}}
-    </ul>
-  {{/with}}
+  <div class="dogs-section">
+      <h2>And I am the proud dog parent of...</h2>
+      <ul>
+        {{#each dogs}}
+    <div class="dog-profile">
+          <li>
+            <h3>WOOF!</h3>
+            <div class="dog-img-text">
+              <img src={{photo}} alt="canine superstar">
+              <div class="dog-text">   
+                <h5>My name is {{name}},</h5> 
+                <p>I am a {{size}} {{breed.breed}} and I'm super {{personality}}</p>
+              </div>
+            </div>
+          </li>
+    </div>  
+        {{/each}}
+      </ul>
+    {{/with}}
+  </div>
 </div>
