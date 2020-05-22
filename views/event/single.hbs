@@ -1,44 +1,54 @@
+<div class="single-event-container">
+  <div class="first-section">
+    {{#with event}}
+    <div class="event-card-single">
+      {{> eventitem }}
+
+      <p><i class="fas fa-map-marker-alt"></i> {{address}}</p> 
+      <small><em>Created by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
+      <!--span>Latitude: {{location.coordinates.[1]}}</span>
+      <span>Longitude: {{location.coordinates.[0]}}</span--> 
+      <small><em>Last updated on</em> {{{formatDate updatedDate}}}</small>
+
+      {{#if owner}}
+      <form action="/event/{{_id}}/edit">
+        <button class="btn-orange">Edit or Remove this Event</button>
+      </form>
+      {{/if}}
+
+    </div>
 
 
-{{#with event}}
+      {{/with}}
 
-{{> eventitem }}
+    <div class="map"> 
+      <div id="map-container"></div>
+    </div>
+  </div>
 
-<div class="event-details">
-  <small><em>Created by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
-  <!--span>Latitude: {{location.coordinates.[1]}}</span>
-  <span>Longitude: {{location.coordinates.[0]}}</span--> 
-  <small><em>Last updated on</em> {{{formatDate updatedDate}}}</small>
-  <h2>Location: </h2>
-  <p>Address: {{address}}</p>  
+
+
+  <div class="comments-section">
+    <h2>Comments: </h2>
+
+    <ul>
+      {{#each comments}}
+      <div class="single-comment">
+        <li>
+          <p>{{description}}</p>
+          <small><em>Commented by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
+        </li>
+      </div>
+      {{/each}}
+    </ul>
+
+    <form action="/event/{{event._id}}/comment" method="POST">
+      <label for="comment-input">Post a Comment</label>
+      <textarea required id="comment-input" name="description">Doggo ipsum pupperino</textarea>
+      <button>Submit Comment</button>
+    </form>
+  </div>
 </div>
-{{/with}}
-
-<div id="map-container"></div>
-
-{{#if event.owner}}
-<form action="/event/{{event._id}}/edit">
-  <button>Edit or Remove this Event</button>
-</form>
-{{/if}}
-
-<h2>Comments: </h2>
-
-<ul>
-  {{#each comments}}
-    <li>
-      <p>{{description}}</p>
-      <small><em>Commented by</em> {{creator.name}} <em>on</em> {{{formatDate createdDate}}}</small>
-    </li>
-  {{/each}}
-</ul>
-
-<form action="/event/{{event._id}}/comment" method="POST">
-  <label for="comment-input">Post a Comment</label>
-  <textarea required id="comment-input" name="description">Doggo ipsum pupperino</textarea>
-  <button>Submit Comment</button>
-</form>
-
 <script>
   function initMap() {
     const event = {{{json event}}};

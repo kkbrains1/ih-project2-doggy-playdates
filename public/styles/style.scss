@@ -1,6 +1,7 @@
 $font-sans: 'Roboto Condensed', Helvetica, Arial, sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
 $orange: #ff7d2a;
+$bg-color: #ebded3;
 $minMain: calc(100vh - 130px);
 
 * {
@@ -27,11 +28,16 @@ body {
 .main {
   min-height: $minMain;
   margin-top: 80px;
+  min-width: 100%;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+i {
+  color: $orange;
 }
 
 .menu {
@@ -45,8 +51,13 @@ a {
   z-index: 999;
   nav {
     display: flex;
-    width: 62em;
+    width: 100%;
     align-items: center;
+    padding: 0 20px 0 40px;
+    img{
+      width: 60px;
+      height: 60px; 
+    }
     a,
     button {
       font-size: 1.2em;
@@ -122,6 +133,11 @@ button,
 textarea {
   min-height: 8em;
   resize: vertical;
+  background-color: white;
+}
+
+input {
+  background-color: rgba($color: #fff, $alpha: 0.7);
 }
 
 #map-container {
@@ -268,7 +284,8 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: $grey;
+  background-color: white;
+  //background-color: $grey;
   .form-picture {
     display: flex;
     align-items: flex-start;
@@ -290,6 +307,7 @@ textarea {
       height: 30px;
       font-size: 0.8em;
       padding: 0.2em;
+      background-color: $orange;
     }
   }
   .user-data {
@@ -304,28 +322,32 @@ textarea {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      form {
+        width: 40px;
+        height: 40px;
+      }
       .btn-style {
-        width: 100px;
-        height: 30px;
-        font-size: 0.8em;
-        padding: 0.2em;
-        border: 1px solid $grey;
-        border-radius: 0;
+        width: 40px;
+        height: 40px;
+        border: none;
         background-color: transparent;
+        padding: 0;
+        cursor: pointer;
       }
     }
   }
   .pet-card {
     min-width: 200px;
     max-width: 200px;
-    height: 250px;
+    max-height: 300px;
     background-color: $orange;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0;
-    margin-top: 2em;
+    margin-top: 20px;
+    margin-right: 20px;
     img {
       width: 200px;
       height: 150px;
@@ -335,18 +357,59 @@ textarea {
       margin: 0;
       font-weight: 700;
     }
+    p {
+      margin-bottom: 0;
+    }
     a {
       z-index: 1;
     }
+    .edit-delete-btns {
+      display: flex;
+      min-width: 200px;
+      max-width: 220px;
+      margin-left: 20px;
+    }
+    i {
+      color: white;
+    }
+    
+    &.add {
+      display: flex;
+      align-items: center;
+      form {
+        width: 200px;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          &:hover {
+            color: white;
+            text-decoration: none;
+          }
+        }
+      }
+      i {
+        font-size: 3em;
+        margin-top: 10px;
+      }
+    }
   }
+
   .row-container {
     display: flex;
-    background-color: white;
-    box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
+    //background-color: white;
+    //box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
     padding: 2em;
     width: 90vw;
   }
 }
+
+
 
 .event-card-list {
   width: 350px;
@@ -372,11 +435,18 @@ textarea {
   .event-name-description {
     display: flex;
     flex-direction: column;
-    width: 500px;
     padding: 10px;
+    .description-text {
+      height: 90px;
+      overflow: hidden;
+      text-overflow: clip;
+    }
     .dates {
       margin-top: 30px;
       line-height: normal;
+      i {
+        padding: 5px;
+      }
     }
   }
   .event-details {
@@ -465,6 +535,112 @@ textarea {
     }
     input {
       width: auto;
+    }
+  }
+}
+
+.create-event {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+}
+
+.single-event-container {
+  width: 100vw;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .event-card-single {
+    width: 600px;
+    .btn-orange {
+      background-color: $orange;
+    }
+  }
+  img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+  .first-section {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    .dates {
+      display: flex;
+      justify-content: flex-start;
+      p {
+        margin-right: 20px;
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  .comments-section {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: $grey;
+    textarea {
+      background-color: white;
+    }
+    button {
+      background-color: $orange;
+      &:hover {
+        background-color: white;
+      }
+    }
+    li {
+      list-style: none;
+    }
+    .single-comment {
+      padding: 10px;
+      p {
+        background-color: rgba($color: #fff, $alpha: 0.7);
+        margin: 0;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+.edit-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    img {
+      width: 400px;
+      height: 300px;
+      object-fit: cover;
+    }
+    .user-data {
+      display: flex;
+      flex-direction: column;
+      button {
+        background-color: $orange;
+      }
+    }
+    .user-picture {
+      display: flex;
+      flex-direction: column;
+      input {
+        width: 400px;
+      }
     }
   }
 }
