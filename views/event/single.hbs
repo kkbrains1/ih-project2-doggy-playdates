@@ -26,11 +26,15 @@
     </div>
   </div>
 
-{{#unless owner}}
-<form action="/event/{{event._id}}/join" method="POST">
-  <label for="join-event">Click here to join</label>
-  <button id="join-event">Join this Event !</button>
-</form>
+{{#unless event.owner}}
+  <form action="/event/{{event._id}}/join" method="POST">
+    <label for="join-event">Click here to join</label>
+    <button id="join-event">Join this Event !</button>
+  </form>
+  <form action="/event/{{event._id}}/contact-owner">
+    <label for="contact-owner">Click here to contact the event organiser privately by email</label>
+    <button id="contact-owner">Send private message to organiser</button>
+  </form>
 {{/unless}}
 
   <div class="comments-section">

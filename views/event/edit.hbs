@@ -99,12 +99,18 @@
   const $inputLongitude = document.getElementById('select-longitude'); 
 
   function initMap() {
+    const event = {{{json event}}};
+    const eventLat = event.location.coordinates[1]
+    const eventLng = event.location.coordinates[0]
+
     const $mapContainer = document.getElementById('map-container');
 
     map = new window.google.maps.Map($mapContainer, {
       center: {lat: 38.74, lng: -9.14 },
       zoom: 10
     });
+
+    addMarker({lat: eventLat, lng: eventLng}, 'red') 
 
     map.addListener('click', event => {
       const latitude = event.latLng.lat();
