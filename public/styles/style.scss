@@ -304,6 +304,15 @@ textarea {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      .btn-style {
+        width: 100px;
+        height: 30px;
+        font-size: 0.8em;
+        padding: 0.2em;
+        border: 1px solid $grey;
+        border-radius: 0;
+        background-color: transparent;
+      }
     }
   }
   .pet-card {
@@ -340,17 +349,18 @@ textarea {
 }
 
 .event-card-list {
-  width: 500px;
+  width: 350px;
   box-shadow: 4px 3px 8px -2px rgba(0, 0, 0, 0.91);
   background-color: white;
   display: flex;
   flex-direction: column;
-  margin-left: 0;
-  margin-top: 5em;
+  margin: 20px 20px 0 0;
+  border-radius: 5px;
   img {
     width: 500px;
     height: 250px;
     object-fit: cover;
+    border-radius: 5px 5px 0 0;
   }
   h1 {
     font-weight: 700;
@@ -362,10 +372,10 @@ textarea {
   .event-name-description {
     display: flex;
     flex-direction: column;
-    width: 600px;
-    padding: 0 1em;
+    width: 500px;
+    padding: 10px;
     .dates {
-      margin-top: 50px;
+      margin-top: 30px;
       line-height: normal;
     }
   }
@@ -417,14 +427,13 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 10px;
     a {
       color: blue;
     }
     ul {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: flex-start;
     }
   }
 }
