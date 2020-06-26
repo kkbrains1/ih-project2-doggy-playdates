@@ -1,3 +1,6 @@
+https://doggy-playdates.herokuapp.com/
+Doggy Playdates - Find fun events and meet new dogs to have a nice playday!
+
 GET / - List all posts
 
 GET /authentication/sign-up
